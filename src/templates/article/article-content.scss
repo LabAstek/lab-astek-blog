@@ -1,0 +1,164 @@
+/**
+ * Contains styles for articles content
+ */
+ @import '../vars.scss';
+
+.article-content {
+  padding: 50px;
+  color: $text-color;
+
+  p {
+    text-align: justify;
+    margin-top: 29px;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  pre {
+    margin: 0;
+  }
+
+  p code, blockquote code {
+    // cursor: pointer;
+    background: rgba(0,0,0,.05);
+    padding: 3px 4px;
+    margin: 0 2px;
+    font-family: Menlo,Monaco,"Courier New",Courier,monospace;
+    font-size: 16px;
+  }
+
+  li {
+    margin-top: 10px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    a {
+      color: inherit;
+      text-decoration: inherit;
+      text-transform: inherit;
+    }
+  }
+
+  h1 {
+    font-family: $font-sans-serif;
+    margin-top: 60px;
+    line-height: 50px;
+  }
+
+  h2 {
+    font-family: $font-sans-serif;
+    margin-top: 60px;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-family: $font-sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 60px;
+  }
+
+  h4 {
+    font-family: $font-sans-serif;
+    font-size:28px;
+    font-style:normal;
+    font-weight:300;
+    color: rgba(0, 0, 0, .44)!important;
+    height:34px;
+    letter-spacing:-0.616px;
+    line-height:34.16px;
+    margin-bottom:0px;
+    margin-left:-1.75px;
+    margin-right:0px;
+    margin-top:30px;
+    word-wrap: break-word;
+  }
+
+  h5 {
+    font-family: $font-sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    margin-top: 30px;
+  }
+
+  td {
+    font-family: $font-readable;
+    color: $content-text-color;
+  }
+
+  p, li, div {
+    // same as .readable class (see /index.scss)
+    font-size: 21px;
+    line-height: 33.18px;
+    font-weight: 400;
+    font-family: $font-readable;
+    color: $content-text-color;
+    -webkit-font-smoothing: antialiased;
+
+    a {
+      font-family: $font-readable;
+      text-decoration: none;
+      // Underline is a custom background
+      background-size: 2px 2px;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 50%);
+      background-repeat: repeat-x;
+      background-position: 0 22px;
+      color: $content-text-color;
+    }
+
+    h3 a {
+      background-position: 0 37px;
+    }
+
+    h4 a {
+      background-position: 0 29px;
+    }
+
+    strong {
+      font-family: $font-readable;
+      font-weight: 800;
+    }
+  }
+
+  iframe, img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+  }
+
+  iframe {
+    height: 360px;
+    width: 100%;
+  }
+
+  blockquote {
+    margin-top: 38px;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.58;
+    letter-spacing: -.003em;
+
+    border-left: 3px solid rgba(0,0,0,.4);
+    padding-left: 20px;
+    margin-left: -23px;
+    padding-bottom: 2px;
+  }
+
+  //
+  // pre
+  // 
+  pre {
+    width: 100%;
+    overflow-x: auto;
+    font-size: 11pt;
+    line-height: 17pt;
+    margin-top: 20px;
+  }
+}
+

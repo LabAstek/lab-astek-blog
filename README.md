@@ -2,6 +2,9 @@
 
 ## TODO
 
+- [] Image viewer
+- [] Helmet SEO tags (og, etc) on ArticleTemplate
+- [] Syntax highlighting (https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/)
 - [] Analytics
 
 ## What's included
@@ -22,17 +25,23 @@
 
 The gatsby plugins can be found on https://github.com/gatsbyjs/gatsby/tree/master/packages.
 
-## gatsby-link
+### gatsby-link
 
 A `<Link>` component for Gatsby.
 
 https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-link
 
-## gatsby-plugin-react-helmet
+### gatsby-plugin-react-helmet
 
 Provides drop-in support for server rendering data added with React Helmet.
 
 https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-react-helmet
+
+### gatsby-remark-images
+
+Processes images in markdown so they can be used in the production build.
+
+https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-images
 
 ## Inspirations
 
