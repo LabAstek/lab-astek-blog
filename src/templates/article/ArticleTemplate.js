@@ -16,26 +16,30 @@ import PropTypes from 'prop-types'
 
 import './article-content.scss'
 
+import CenterContent from '../../components/CenterContent'
+
 import ArticleMeta from './components/ArticleMeta'
 import ArticleHelmet from './components/ArticleHelmet'
 
 import Grid from 'material-ui/Grid'
-import { generateToc } from '../../modules/article/utils/toc'
+import { generateToc } from '../../modules/post/utils/toc'
 
 const ArticleTemplate = ({
   data // this prop will be injected by the GraphQL query below.
 }) => {
   const { markdownRemark, pathContext } = data // data.markdownRemark holds our post data
   const { frontmatter, html, excerpt } = markdownRemark
+  console.log('data', data)
   return (
     <div>
       <ArticleHelmet excerpt={excerpt} frontmatter={frontmatter} />
 
       <Grid container spacing={0}>
         {/* Allow us to center our article-content */}
-        <Grid item xs={0} sm={2} />
+        {/* TODO: hide on xs / sm */}
+        <Grid item xs={12} md={2} />
 
-        <Grid item xs={12} sm={8}>
+        <Grid item xs={12} md={8}>
           <h1
             style={{
               color: '#636363', // TODO: use material-ui theme
@@ -45,17 +49,15 @@ const ArticleTemplate = ({
             {frontmatter.title}
           </h1>
 
-          <div
-            style={{
-              maxWidth: '800px',
-              margin: '0 auto'
-            }}
-            className="article-content"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          <CenterContent>
+            <div
+              className="article-content"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
+          </CenterContent>
         </Grid>
 
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} md={2}>
           <ArticleMeta frontmatter={frontmatter} toc={generateToc(html)} />
         </Grid>
       </Grid>
@@ -72,10 +74,15 @@ export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
+      excerpt
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path
         title
+        description
+        author
+        published
+        coverImage
       }
     }
   }

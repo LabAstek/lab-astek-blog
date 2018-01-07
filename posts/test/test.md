@@ -2,7 +2,7 @@
 path: "/blog/test"
 date: "2018-01-01"
 title: "My first blog post test"
-template: blog
+template: article
 ---
 
 ![Cow](./resources/cow.jpeg)

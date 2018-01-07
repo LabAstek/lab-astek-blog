@@ -4,8 +4,12 @@
   "version": "1.0.0",
   "author": "Loïc Lefloch <l.lefloch.91@gmail.com>",
   "dependencies": {
+    "classnames": "2.2.5",
     "gatsby": "^1.9.145",
     "gatsby-link": "^1.6.32",
+    "gatsby-plugin-google-analytics": "1.0.15",
+    "gatsby-plugin-manifest": "1.0.12",
+    "gatsby-plugin-offline": "1.0.12",
     "gatsby-plugin-react-helmet": "2.0.3",
     "gatsby-plugin-sass": "1.0.15",
     "gatsby-remark-images": "1.5.36",
@@ -43,7 +47,7 @@
       "jsx",
       "js"
     ],
-    "collectCoverage": true,
+    "collectCoverage": false,
     "coverageReporters": [
       "lcov",
       "text",

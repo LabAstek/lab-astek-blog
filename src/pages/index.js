@@ -1,13 +1,38 @@
 import React from 'react'
-import Link from 'gatsby-link'
 
-const IndexPage = () => (
-  <div>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <Link to="/page-2/">Go to page 2</Link>
-  </div>
-)
+import PostList from './index/components/PostList'
+import CenterContent from '../components/CenterContent'
+
+const IndexPage = ({ data }) => {
+  const { edges: posts } = data.allMarkdownRemark
+
+  return (
+    <CenterContent>
+      <PostList posts={posts} />
+    </CenterContent>
+  )
+}
+
+// TODO: filter published set to false
+export const pageQuery = graphql`
+  query IndexQuery {
+    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          excerpt(pruneLength: 250)
+          id
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+            path
+            description
+            author
+            coverImage
+          }
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage

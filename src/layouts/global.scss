@@ -1,0 +1,56 @@
+@import "../templates/vars";
+
+body {
+  font-family: $font-readable;
+}
+
+body, #___gatsby {
+  height: 100%;
+}
+
+h1, h3 { font-weight: 300; }
+
+h1 { color: #636363; font-size: 2em; }
+
+h3 { color: #4a89dc; font-size: 1.17em; }
+
+a:visited {
+  color: #757575; // grey600
+}
+
+a {
+  color: inherit;
+}
+
+.not-selectable, .disable-user-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.separator-little {
+  border-bottom: 1px solid #ececec;
+  width: 100%;
+  height: 2px;
+}
+
+.separator-medium {
+  border-bottom: solid 2px #d1d3d2;
+  width: 100%;
+  height: 4px;
+}
+
+.pointer, .pointer:hover {
+  cursor: pointer!important;
+}
+
+// A 'readable' text, easy to read.
+.readable {
+  font-size: 21px;
+  line-height: 33.18px;
+  font-weight: 400;
+  font-family: $font-readable;
+  color: $content-text-color;
+  -webkit-font-smoothing: antialiased;
+}

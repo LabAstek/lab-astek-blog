@@ -11,7 +11,11 @@ import Content from './Content'
 // Note: gatsby handle badly the reloading of this page with HMR, so all our code goes to Content.
 
 const TemplateWrapper = ({ children }) => (
-  <div>
+  <div
+    style={{
+      height: '100%'
+    }}
+  >
     <Helmet title={getWebsiteTitle()} meta={getDefaultMeta()} />
 
     <Content>{children}</Content>

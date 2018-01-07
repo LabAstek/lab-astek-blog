@@ -36,7 +36,9 @@ const getComponent = node => {
   const templatePath = TemplatesPaths[templateName]
 
   if (templatePath === undefined) {
-    console.error(`Unknown template ${templateName}`)
+    console.error(
+      `Unknown template ${templateName} for ${node.frontmatter.path}`
+    )
     // template not found but we return a value to avoid unknwon errors.
     return TemplatesPaths[defaultTemplate]
   }
@@ -55,7 +57,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       ) {
         edges {
           node {
-            excerpt(pruneLength: 250)
+            excerpt(pruneLength: 250) # default excerpt (take first 250 chars from the content)
             html
             id
             frontmatter {
@@ -63,6 +65,10 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               path # relative url to server the post. Ex: '/blog/test'
               title # title of the post
               template # define which template to use to display the post
+              description # Custom excerpt
+              author # author name / pseudo
+              published # Set to false if you don’t want a specific post to show up when the site is generated
+              coverImage # image to use as a cover
             }
           }
         }
@@ -77,8 +83,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       createPage({
         path: node.frontmatter.path,
         component: getComponent(node),
-        context: {
-        } // additional data can be passed via context
+        context: {} // additional data can be passed via context
       })
     })
   })

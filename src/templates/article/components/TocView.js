@@ -39,43 +39,41 @@ const styles = {
   }
 }
 
-const TocView = ({ toc }) => {
-  return (
-    // TODO: take remaining space
-    <div
-      className="u-zIndexFloating u-maxHeight300 u-borderLeft4 borderPrimary"
-      style={{
-        overflowX: 'hidden',
-        overflowY: 'auto',
-        minWidth: '160px',
-        marginTop: 20,
-        height: '100%'
-      }}
-    >
-      <ul>
-        <li>
+const TocView = ({ toc }) => (
+  // TODO: take remaining space
+  <div
+    className="u-zIndexFloating u-maxHeight300 u-borderLeft4 borderPrimary"
+    style={{
+      overflowX: 'hidden',
+      overflowY: 'auto',
+      minWidth: '160px',
+      marginTop: 20,
+      height: '100%'
+    }}
+  >
+    <ul>
+      <li key="0">
+        <a
+          href="#"
+          className="link hoverPrimary u-marginBottom4"
+          style={{ ...styles.H1, ...styles.link }}
+        >
+          Top
+        </a>
+      </li>
+      {toc.map(elem => (
+        <li key={elem.id || elem.title}>
           <a
-            href="#"
+            href={`#${elem.id}`}
             className="link hoverPrimary u-marginBottom4"
-            style={{ ...styles.H1, ...styles.link }}
+            style={{ ...styles[elem.type], ...styles.link }}
           >
-            Top
+            {elem.title}
           </a>
         </li>
-        {toc.map(elem => (
-          <li>
-            <a
-              href={`#${elem.id}`}
-              className="link hoverPrimary u-marginBottom4"
-              style={{ ...styles[elem.type], ...styles.link }}
-            >
-              {elem.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
+      ))}
+    </ul>
+  </div>
+)
 
 export default TocView

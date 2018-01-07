@@ -1,7 +1,7 @@
+// const metadata = require('./metadata.json')
+
 module.exports = {
   plugins: [
-    `gatsby-plugin-sass`,
-    `gatsby-plugin-react-helmet`,
     // read markdown files
     // https://github.com/gatsbyjs/gatsby/blob/master/docs/docs/adding-markdown-pages.md
     {
@@ -46,6 +46,38 @@ module.exports = {
           }
         ]
       }
-    }
+    },
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-react-helmet`,
+    // This plugin takes your configuration and generates a web manifest file so our website can
+    // be added to an Android homescreen
+    // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-manifest
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: `${metadata.websiteName}`,
+    //     short_name: `${metadata.websiteShortName}`,
+    //     start_url: `/`,
+    //     background_color: `${metadata.backgroundColor}`,
+    //     theme_color: `${metadata.themeColor}`,
+    //     display: `minimal-ui`
+    //   }
+    // },
+    // This plugin generates a service worker and AppShell
+    // html file so the site works offline and is otherwise
+    // resistant to bad networks. Works with almost any
+    // site!
+    // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-offline/README.md
+    //
+    // must be after gatsby-plugin-manifest configuration
+    // `gatsby-plugin-offline`,
+    // Sets up google analytics
+    // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/README.md
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     trackingId: `` // TODO: add trackingId
+    //   }
+    // }
   ]
 }
