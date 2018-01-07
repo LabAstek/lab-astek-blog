@@ -43,12 +43,49 @@ module.exports = {
               // Defaults to false.
               sizeByPixelDensity: false
             }
-          }
+          },
+          // https://github.com/JLongley/gatsby-remark-external-links
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'nofollow'
+            }
+          },
+          // add 'id' to html titles (h1, etc)
+          // plugins/gatsby-remark-titles
+          {
+            resolve: 'gatsby-remark-titles',
+          },
+          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-copy-linked-files
+          // Copies local files linked to/from markdown to your public folder.
+          {
+            resolve: 'gatsby-remark-copy-linked-files',
+          },
+          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-embed-snippet
+          // Embeds the contents of specified files within Prism-formatted HTML blocks.
+          {
+            resolve: 'gatsby-remark-embed-snippet',
+            options: {
+              // Class prefix for <pre> tags containing syntax highlighting;
+              // defaults to 'language-' (eg <pre class="language-js">).
+              // If your site loads Prism into the browser at runtime,
+              // (eg for use with libraries like react-live),
+              // you may use this to prevent Prism from re-processing syntax.
+              // This is an uncommon use-case though;
+              // If you're unsure, it's best to use the default value.
+              classPrefix: 'language-',
+          
+              // Example code links are relative to this dir.
+              // eg examples/path/to/file.js
+              directory: `${__dirname}/posts/`,
+            },
+          },
         ]
       }
     },
     `gatsby-plugin-sass`,
-    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-react-helmet`
     // This plugin takes your configuration and generates a web manifest file so our website can
     // be added to an Android homescreen
     // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-manifest

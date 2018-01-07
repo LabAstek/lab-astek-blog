@@ -1,0 +1,8 @@
+{
+  "name": "gatsby-remark-titles",
+  "version": "0.0.1",
+  "description": "Automatically adds ids to links in markdown.",
+  "main": "index.js",
+  "author": "Loïc Lefloch <l.lefloch.91@gmail.com>",
+  "license": "MIT"
+}

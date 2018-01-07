@@ -1,4 +1,5 @@
 import map from 'lodash/map'
+import isEmpty from 'lodash/isEmpty'
 
 export const generateToc = content => {
   const div = document.createElement('div')
@@ -23,8 +24,10 @@ export const generateToc = content => {
 
     countForTag[type] += 1
 
+    const id = titleElem.getAttribute('id')
     return {
-      id: titleElem.getAttribute('id'),
+      id: !isEmpty(id) ? id : '',
+      hasId: !isEmpty(id),
       title: titleElem.innerText || titleElem.textContent,
       type // H1, H2, H3, etc
     }
