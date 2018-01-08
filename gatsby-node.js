@@ -9,7 +9,12 @@
 // boundActionCreators and graphql. Use the graphql to query Markdown file data as below.
 // Next use createPage action creator to create a page for each of the Markdown files
 
+const kebabCase = require('lodash/kebabCase')
+
 const path = require('path')
+
+const tagPage = path.resolve('src/templates/tag/TagTemplate.js')
+const categoryPage = path.resolve('src/templates/category/CategoryTemplate.js')
 
 const Templates = {
   ARTICLE: 'article'
@@ -67,8 +72,14 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
               template # define which template to use to display the post
               description # Custom excerpt
               author # author name / pseudo
-              published # Set to false if you don’t want a specific post to show up when the site is generated
-              coverImage # image to use as a cover
+              draft # Set to true if you don’t want a specific post to show up when the site is generated
+              coverImage # imagetags to use as a cover
+              tags # list of tags
+              category # category of the post
+            }
+            fields {
+              slug
+              # toc { ... }
             }
           }
         }
@@ -76,15 +87,99 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     }
   `).then(result => {
     if (result.errors) {
+      /* eslint no-console: "off" */
+      console.log(result.errors)
       return Promise.reject(result.errors)
     }
 
+    // see https://github.com/Vagr9K/gatsby-advanced-starter/blob/master/gatsby-node.js
+    const tagSet = new Set()
+    const categorySet = new Set()
+
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      if (node.frontmatter.tags) {
+        node.frontmatter.tags.forEach(tag => {
+          tagSet.add(tag)
+        })
+      }
+
+      if (node.frontmatter.category) {
+        categorySet.add(node.frontmatter.category)
+      }
+
       createPage({
-        path: node.frontmatter.path,
+        // path: node.frontmatter.path,
+        path: node.fields.slug,
         component: getComponent(node),
-        context: {} // additional data can be passed via context
+        context: {
+          slug: node.fields.slug
+        } // additional data can be passed via context
+      })
+    })
+
+    const tagList = Array.from(tagSet)
+    tagList.forEach(tag => {
+      createPage({
+        path: `/tags/${kebabCase(tag)}/`,
+        component: tagPage,
+        context: {
+          tag
+        }
+      })
+    })
+
+    const categoryList = Array.from(categorySet)
+    categoryList.forEach(category => {
+      createPage({
+        path: `/categories/${kebabCase(category)}/`,
+        component: categoryPage,
+        context: {
+          category
+        }
       })
     })
   })
+}
+
+//
+// on create node
+//
+
+exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
+  const { createNodeField } = boundActionCreators
+  let slug
+  if (node.internal.type === 'MarkdownRemark') {
+    const fileNode = getNode(node.parent)
+    const parsedFilePath = path.parse(fileNode.relativePath)
+    if (
+      Object.prototype.hasOwnProperty.call(node, 'frontmatter') &&
+      Object.prototype.hasOwnProperty.call(node.frontmatter, 'slug')
+    ) {
+      slug = `/${kebabCase(node.frontmatter.slug)}`
+    }
+    if (
+      Object.prototype.hasOwnProperty.call(node, 'frontmatter') &&
+      Object.prototype.hasOwnProperty.call(node.frontmatter, 'title')
+    ) {
+      slug = `/${kebabCase(node.frontmatter.title)}`
+    } else if (parsedFilePath.name !== 'index' && parsedFilePath.dir !== '') {
+      slug = `/${parsedFilePath.dir}/${parsedFilePath.name}/`
+    } else if (parsedFilePath.dir === '') {
+      slug = `/${parsedFilePath.name}/`
+    } else {
+      slug = `/${parsedFilePath.dir}/`
+    }
+    createNodeField({ node, name: 'slug', value: slug })
+
+    //
+    // toc
+    //
+    const toc = {
+      // set to false if toc is empty are should not be displayed
+      isValid: false
+      // TODO
+    }
+
+    createNodeField({ node, name: 'toc', value: toc })
+  }
 }

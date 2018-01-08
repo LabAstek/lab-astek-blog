@@ -14,6 +14,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { formatPost } from '../../modules/post/format'
+
 import './article-content.scss'
 
 import CenterContent from '../../components/CenterContent'
@@ -27,13 +29,11 @@ import { generateToc } from '../../modules/post/utils/toc'
 const ArticleTemplate = ({
   data // this prop will be injected by the GraphQL query below.
 }) => {
-  const { markdownRemark, pathContext } = data // data.markdownRemark holds our post data
-  const { frontmatter, html, excerpt } = markdownRemark
-  console.log('data', data)
+  const { markdownRemark } = data // data.markdownRemark holds our post data
+  const { frontmatter, html, excerpt } = formatPost(markdownRemark)
   return (
     <div>
       <ArticleHelmet excerpt={excerpt} frontmatter={frontmatter} />
-
       <Grid container spacing={0}>
         {/* Allow us to center our article-content */}
         {/* TODO: hide on xs / sm */}
@@ -71,8 +71,8 @@ ArticleTemplate.propTypes = {
 }
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
+  query BlogPostByPath($slug: String!) {
+    markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       excerpt
       frontmatter {
@@ -81,8 +81,14 @@ export const pageQuery = graphql`
         title
         description
         author
-        published
+        draft
         coverImage
+        tags
+        category
+      }
+      fields {
+        slug
+        # toc { ... }
       }
     }
   }

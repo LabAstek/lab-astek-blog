@@ -4,9 +4,9 @@ import Helmet from 'react-helmet'
 import 'typeface-roboto'
 import 'normalize.css'
 
-import { getWebsiteTitle, getDefaultMeta } from '../../modules/config'
+import { getWebsiteTitle, getDefaultMeta } from '../modules/config/'
 
-import Content from './Content'
+import Body from './Body'
 
 // Note: gatsby handle badly the reloading of this page with HMR, so all our code goes to Content.
 
@@ -18,7 +18,7 @@ const TemplateWrapper = ({ children }) => (
   >
     <Helmet title={getWebsiteTitle()} meta={getDefaultMeta()} />
 
-    <Content>{children}</Content>
+    <Body>{children}</Body>
   </div>
 )
 

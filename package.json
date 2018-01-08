@@ -5,7 +5,7 @@
   "author": "Loïc Lefloch <l.lefloch.91@gmail.com>",
   "dependencies": {
     "classnames": "2.2.5",
-    "gatsby": "^1.9.145",
+    "gatsby": "1.9.149",
     "gatsby-link": "^1.6.32",
     "gatsby-plugin-google-analytics": "1.0.15",
     "gatsby-plugin-manifest": "1.0.12",
@@ -37,7 +37,7 @@
     "clean": "rm -rf public/render-page.js.map public/static .cache coverage",
     "osx-fix": "npm run clean; mv ./src/layouts/Header ./src/layouts/Content; npm run dev",
     "osx-fix2": "npm run clean; mv ./src/layouts/Content/Header ./src/layouts; npm run dev",
-    "dev": "node_modules/.bin/gatsby develop --host localhost --port 8042",
+    "dev": "node_modules/.bin/gatsby develop --host localhost --port 8044",
     "test": "jest",
     "test:watch": "jest --watch",
     "prettify": "prettier --write '{./,__{tests,mocks}__}/**/*.+(js|jsx)'"

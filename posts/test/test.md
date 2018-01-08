@@ -3,6 +3,10 @@ path: "/blog/test"
 date: "2018-01-01"
 title: "My first blog post test"
 template: article
+author: Loïc Lefloch
+category: testCategory
+tags:
+  - tag1
 ---
 
 ![Cow](./resources/cow.jpeg)
@@ -117,7 +121,7 @@ Sample text here...
 
 Syntax highlighting
 
-``` js
+```javascript
 var foo = function (bar) {
   return bar++;
 };

@@ -1,5 +1,4 @@
 import React from 'react'
-import isEmpty from 'lodash/isEmpty'
 
 const styles = {
   H1: {
@@ -9,27 +8,27 @@ const styles = {
   },
   H2: {
     display: 'inline-block',
-    paddingLeft: '10px',
+    paddingLeft: '20px',
     paddingTop: '5px'
   },
   H3: {
     display: 'inline-block',
-    paddingLeft: '20px',
+    paddingLeft: '30px',
     paddingTop: '5px'
   },
   H4: {
     display: 'inline-block',
-    paddingLeft: '30px',
+    paddingLeft: '40px',
     paddingTop: '5px'
   },
   H5: {
     display: 'inline-block',
-    paddingLeft: '40px',
+    paddingLeft: '50px',
     paddingTop: '5px'
   },
   h5: {
     display: 'inline-block',
-    paddingLeft: '50px',
+    paddingLeft: '60px',
     paddingTop: '5px'
   },
   link: {

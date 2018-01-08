@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PostList from './index/components/PostList'
+import PostList from '../components/post/PostList'
 import CenterContent from '../components/CenterContent'
 
 const IndexPage = ({ data }) => {
@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
   )
 }
 
-// TODO: filter published set to false
+// TODO: filter draft set to true
 export const pageQuery = graphql`
   query IndexQuery {
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
@@ -28,6 +28,11 @@ export const pageQuery = graphql`
             description
             author
             coverImage
+            tags
+          }
+          fields {
+            slug
+            # toc { ... }
           }
         }
       }

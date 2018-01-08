@@ -6,6 +6,7 @@
 - [] Image viewer
 - [] Environment variables (https://www.gatsbyjs.org/docs/environment-variables/)
 - [] Helmet SEO tags (og, etc) on ArticleTemplate
+  - https://github.com/Vagr9K/gatsby-advanced-starter/blob/master/src/components/SEO/SEO.jsx
 - [] Sitemap (https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/)
 - [] Syntax highlighting (https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/)
 - [] Analytics

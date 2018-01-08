@@ -12,6 +12,7 @@ const ArticleHelmet = ({ frontmatter, excerpt }) => (
     <meta name="description" content={excerpt} />
     <meta name="og:description" content={excerpt} />
     {/* TODO: add meta (og: author, etc) */}
+    {/* TODO: tags */}
   </Helmet>
 )
 

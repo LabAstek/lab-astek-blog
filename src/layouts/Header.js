@@ -5,7 +5,7 @@ import AppBar from 'material-ui/AppBar'
 import Toolbar from 'material-ui/Toolbar'
 import Typography from 'material-ui/Typography'
 
-import { getWebsiteTitle } from '../../modules/config'
+import { getWebsiteTitle } from '../modules/config'
 
 const Header = () => (
   <AppBar position="fixed" color="primary">

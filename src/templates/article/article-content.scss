@@ -1,7 +1,16 @@
 /**
  * Contains styles for articles content
  */
- @import '../vars.scss';
+ @import '../../style/vars.scss';
+
+// mixin since `code` can be defined as children for different elements (li, p, ...)
+@mixin code {
+  background: rgba(0,0,0,.05);
+  padding: 3px 4px;
+  margin: 0 2px;
+  font-family: Menlo,Monaco,"Courier New",Courier,monospace;
+  font-size: 16px;
+}
 
 .article-content {
   padding: 50px;
@@ -21,16 +30,20 @@
   }
 
   p code, blockquote code {
-    // cursor: pointer;
-    background: rgba(0,0,0,.05);
-    padding: 3px 4px;
-    margin: 0 2px;
-    font-family: Menlo,Monaco,"Courier New",Courier,monospace;
-    font-size: 16px;
+    @include code;
   }
 
-  li {
-    margin-top: 10px;
+  ul {
+    list-style: circle;
+    margin-left: 30px;
+
+    li {
+      margin-top: 10px;
+    }
+
+    code {
+      @include code;
+    }
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -45,19 +58,23 @@
     font-family: $font-sans-serif;
     margin-top: 60px;
     line-height: 50px;
+    font-size: 38px;
   }
 
   h2 {
+    font-size: 37px;
     font-family: $font-sans-serif;
     margin-top: 60px;
     font-weight: 700;
   }
 
   h3 {
+    font-size: 1.17em;
     font-family: $font-sans-serif;
     font-size: 36px;
     font-weight: 600;
     margin-top: 60px;
+    color: #28343d;
   }
 
   h4 {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { formatPost } from '../../../modules/post/format'
+import { formatPost } from '../../modules/post/format'
 
 import PostItem from './PostItem'
 

@@ -55,12 +55,28 @@ module.exports = {
           // add 'id' to html titles (h1, etc)
           // plugins/gatsby-remark-titles
           {
-            resolve: 'gatsby-remark-titles',
+            resolve: 'gatsby-remark-titles'
           },
           // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-copy-linked-files
           // Copies local files linked to/from markdown to your public folder.
           {
-            resolve: 'gatsby-remark-copy-linked-files',
+            resolve: 'gatsby-remark-copy-linked-files'
+          },
+          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-prismjs
+          // Adds syntax highlighting to code blocks in markdown files using PrismJS
+          // (http://prismjs.com/).
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              // Class prefix for <pre> tags containing syntax highlighting;
+              // defaults to 'language-' (eg <pre class="language-js">).
+              // If your site loads Prism into the browser at runtime,
+              // (eg for use with libraries like react-live),
+              // you may use this to prevent Prism from re-processing syntax.
+              // This is an uncommon use-case though;
+              // If you're unsure, it's best to use the default value.
+              classPrefix: 'language-'
+            }
           },
           // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-embed-snippet
           // Embeds the contents of specified files within Prism-formatted HTML blocks.
@@ -75,12 +91,12 @@ module.exports = {
               // This is an uncommon use-case though;
               // If you're unsure, it's best to use the default value.
               classPrefix: 'language-',
-          
+
               // Example code links are relative to this dir.
               // eg examples/path/to/file.js
-              directory: `${__dirname}/posts/`,
-            },
-          },
+              directory: `${__dirname}/posts/`
+            }
+          }
         ]
       }
     },

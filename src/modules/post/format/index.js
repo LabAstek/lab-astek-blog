@@ -1,8 +1,8 @@
 import isEmpty from 'lodash/isEmpty'
   
 export const formatPost = post => {
-  // published
-  post.published = post.published || true
+  // draft
+  post.draft = post.draft || false
 
   //
   // `description` can be defined on the frontmatter. It replace the generated excerpt
