@@ -32,7 +32,7 @@ export const pageQuery = graphql`
             slug
           }
           excerpt
-          # timeToRead
+          timeToRead
           frontmatter {
             title
             tags

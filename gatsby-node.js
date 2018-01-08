@@ -13,6 +13,8 @@ const kebabCase = require('lodash/kebabCase')
 
 const path = require('path')
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 const tagPage = path.resolve('src/templates/tag/TagTemplate.js')
 const categoryPage = path.resolve('src/templates/category/CategoryTemplate.js')
 
@@ -54,10 +56,17 @@ const getComponent = node => {
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
 
+  const draftFilter = `
+    filter: {
+      frontmatter: { draft: { ne: true }}
+    }
+  `
+
   return graphql(`
     {
       allMarkdownRemark(
         sort: { order: DESC, fields: [frontmatter___date] }
+        ${isProduction ? draftFilter : ''}
         limit: 1000
       ) {
         edges {
