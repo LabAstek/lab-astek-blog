@@ -1,8 +1,8 @@
 @import "./vars";
 
 body {
-  font-family: $font-readable;
-  background-color: '#f9f9f9',
+  font-family: 'Roboto';
+  background-color: '#f9f9f9';
 }
 
 body, #___gatsby {
@@ -15,11 +15,7 @@ h1 { color: #636363; font-size: 2em; }
 
 h3 { color: #4a89dc; font-size: 1.17em; }
 
-a:visited {
-  color: #757575; // grey600
-}
-
-a {
+a, a:visited {
   color: inherit;
 }
 

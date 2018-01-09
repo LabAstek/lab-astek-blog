@@ -192,4 +192,4 @@ tputs(tgoto(res, pos_x, pos_y), 1, my_outc);
 ```
 
 On a placé le curseur à la position (x, y). Si nous voulons juste déplacer le curseur d’un vers la droite, il faudrait connaitre la position originale du curseur et ajouter 1 a pos_x.
-Il existe une autre façon de faire, plus simple, qui ne nécessite pas de connaitre la position du curseur : on utilise « nd » avec tgetstr.
+Il existe une autre façon de faire, plus simple, qui ne nécessite pas de connaitre la position du curseur : on utilise `nd` avec `tgetstr`.

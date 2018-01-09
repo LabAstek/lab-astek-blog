@@ -1,6 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import PostList from '../../components/post/PostList'
+import PostListContent from '../../components/post/PostListContent'
+import Typography from 'material-ui/Typography/Typography'
 
 class CategoryTemplate extends React.PureComponent {
   render() {
@@ -9,10 +11,9 @@ class CategoryTemplate extends React.PureComponent {
     const { edges: posts } = data.allMarkdownRemark
 
     return (
-      <div className="category-container">
-        <Helmet title={`Posts in category "${category}"`} />
+      <PostListContent title={`Posts in category "${category}"`}>
         <PostList posts={posts} />
-      </div>
+      </PostListContent>
     )
   }
 }

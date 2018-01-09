@@ -7,12 +7,14 @@ import Chip from 'material-ui/Chip'
 const styles = theme => ({
   chip: {
     margin: theme.spacing.unit,
-    cursor: 'pointer'
+    cursor: 'pointer',
+    height: '22px',
   },
   row: {
     display: 'flex',
     // justifyContent: 'center',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    marginTop: '10px',
   }
 })
 

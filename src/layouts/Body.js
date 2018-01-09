@@ -5,11 +5,9 @@ import PropTypes from 'prop-types'
 // using require because smooth-scroll require ``, that is not available when building for prod
 // const SmoothScroll = require('smooth-scroll')
 
-import 'prismjs/themes/prism-tomorrow.css'
-import '../style/index.scss'
-
+import withRoot from '../modules/ssr/withRoot'
 import Header from './Header'
-import ThemeProvider from '../modules/theme/ThemeProvider'
+import LayoutFooter from '../components/LayoutFooter'
 
 // Note: gatsby handle badly the reloading of the layouts/index with HMR, so all our code goes here
 
@@ -32,28 +30,28 @@ import ThemeProvider from '../modules/theme/ThemeProvider'
 // Note: previously named 'Content' but gatsby could have some issue with
 // https://github.com/gatsbyjs/gatsby/issues/1499
 const Body = ({ children }) => (
-  <ThemeProvider>
+  <div
+    style={{
+      height: '100%'
+    }}
+  >
+    <Header />
+
     <div
       style={{
+        marginTop: 80, // space for header
         height: '100%'
       }}
     >
-      <Header />
-
-      <div
-        style={{
-          marginTop: 80, // space for header
-          height: '100%'
-        }}
-      >
-        {children()}
-      </div>
+      {children()}
     </div>
-  </ThemeProvider>
+
+    <LayoutFooter />
+  </div>
 )
 
 Body.propTypes = {
   children: PropTypes.func.isRequired
 }
 
-export default Body
+export default withRoot(Body)

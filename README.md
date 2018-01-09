@@ -25,6 +25,10 @@
 
 `npm run dev` will start a development server on port `8042`.
 
+### Css-in-js
+
+https://github.com/cssinjs/jss
+
 ## Plugins
 
 The gatsby plugins can be found on https://github.com/gatsbyjs/gatsby/tree/master/packages.
@@ -52,3 +56,60 @@ https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-images
 Inspirations for gatsby can be found on gatsby [starters](https://www.gatsbyjs.org/docs/gatsby-starters/).
 
 - https://github.com/saschajullmann/gatsby-starter-gatsbythemes
+
+
+# Architecture
+
+We use [Gatsby](https://www.gatsbyjs.org/) under the hood.
+
+# Directories 
+
+## plugins
+
+Contains our custom gatsby plugins.
+
+## post
+
+A git submodule. Contains the posts of the blog
+
+## public
+
+Contains the builded public data
+
+## src
+
+### components
+
+Set of :
+- generic components
+- components used by the Pages defined on `pages`
+
+### layouts
+
+Contains our Layout components. The Layout is the body of our app.
+
+### modules
+
+A module can contains :
+
+- utilities
+- constants (`constants` file or directory)
+- formatters (`format` file or directory)
+- configuration
+
+### pages
+
+Contains the different pages of our blog.
+
+Warning: Bugs can appear with gatsby if there is other files than pages files in the root of this directory.
+For components, use `/components` directory.
+
+### style
+
+Our sass style code
+
+### templates
+
+Contains our gatsby `templates`.
+
+Templates are linked to an url on `gatsby-node.js`

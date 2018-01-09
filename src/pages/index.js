@@ -7,7 +7,11 @@ const IndexPage = ({ data }) => {
   const { edges: posts } = data.allMarkdownRemark
 
   return (
-    <CenterContent>
+    <CenterContent
+      style={{
+        marginBottom: '50px'
+      }}
+    >
       <PostList posts={posts} />
     </CenterContent>
   )
@@ -16,7 +20,13 @@ const IndexPage = ({ data }) => {
 // TODO: filter draft set to true
 export const pageQuery = graphql`
   query IndexQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) # Note: we want to hide drafts, but only in production.
+    # filter: {
+    # frontmatter: { draft: { ne: true }}
+    # }
+    {
       edges {
         node {
           excerpt(pruneLength: 250)

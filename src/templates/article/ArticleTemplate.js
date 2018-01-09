@@ -43,7 +43,9 @@ const ArticleTemplate = ({
           <h1
             style={{
               color: '#636363', // TODO: use material-ui theme
-              fontSize: '2em'
+              fontSize: '38px',
+              textAlign: 'center',
+              marginTop: '20px',
             }}
           >
             {frontmatter.title}

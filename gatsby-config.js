@@ -101,7 +101,14 @@ module.exports = {
       }
     },
     `gatsby-plugin-sass`,
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
+    // https://www.gatsbyjs.org/packages/gatsby-plugin-react-next/
+    // Use React 16 with your Gatsby v1 site. (Gatsby v1 ships with React 15 by default)
+    // It automatically includes the two recommended polyfills for ES6 map/set so adding this to 
+    // your site is drop-in upgrade to React 16.
+    {
+      resolve: `gatsby-plugin-react-next`,
+    },
     // This plugin takes your configuration and generates a web manifest file so our website can
     // be added to an Android homescreen
     // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-manifest

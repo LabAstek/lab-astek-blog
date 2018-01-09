@@ -3,18 +3,29 @@ import PropTypes from 'prop-types'
 
 import { withStyles } from 'material-ui/styles'
 
+import Typography from 'material-ui/Typography'
+
 import TocView from './TocView'
 import TagsList from './TagsList'
 import Category from './Category'
 
 const styles = theme => ({
   root: {
-    position: 'fixed'
+    position: 'fixed',
+    marginTop: '10px',
   }
 })
 
 const Author = ({ frontmatter }) =>
-  frontmatter.hasAuthor ? <div>{frontmatter.author}</div> : null
+  frontmatter.hasAuthor ? (
+    <Typography
+      style={{
+        marginTop: '10px'
+      }}
+    >
+      {frontmatter.author}
+    </Typography>
+  ) : null
 
 const ArticleMeta = ({ frontmatter, toc, classes }) => (
   <div className={classes.root}>

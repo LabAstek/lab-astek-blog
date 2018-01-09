@@ -60,21 +60,22 @@ const TocView = ({ toc }) => (
           Top
         </a>
       </li>
-      {toc.map(elem => (
-        <li key={elem.id || elem.title}>
-          {elem.hasId ? (
-            <a
-              href={`#${elem.id}`}
-              className="link hoverPrimary u-marginBottom4"
-              style={{ ...styles[elem.type], ...styles.link }}
-            >
-              {elem.title}
-            </a>
-          ) : (
-            <span>{elem.title}</span>
-          )}
-        </li>
-      ))}
+      {toc &&
+        toc.map(elem => (
+          <li key={elem.id || elem.title}>
+            {elem.hasId ? (
+              <a
+                href={`#${elem.id}`}
+                className="link hoverPrimary u-marginBottom4"
+                style={{ ...styles[elem.type], ...styles.link }}
+              >
+                {elem.title}
+              </a>
+            ) : (
+              <span>{elem.title}</span>
+            )}
+          </li>
+        ))}
     </ul>
   </div>
 )

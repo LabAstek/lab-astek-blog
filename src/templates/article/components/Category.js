@@ -2,18 +2,28 @@ import React from 'react'
 import isEmpty from 'lodash/isEmpty'
 import kebabCase from 'lodash/kebabCase'
 import Link from 'gatsby-link'
+import Typography from 'material-ui/Typography'
 
 const Category = ({ category }) =>
   isEmpty(category) ? null : (
     <div>
-      {' '}
-      <Link
-        key={category}
-        style={{ textDecoration: 'none' }}
-        to={`/categories/${kebabCase(category)}`}
+      <Typography
+        style={{
+          marginTop: '10px'
+        }}
       >
-        {category}
-      </Link>
+        Category:
+      </Typography>
+
+      <div style={{ marginTop: '6px' }}>
+        <Link
+          key={category}
+          style={{ textDecoration: 'none' }}
+          to={`/categories/${kebabCase(category)}`}
+        >
+          {category}
+        </Link>
+      </div>
     </div>
   )
 

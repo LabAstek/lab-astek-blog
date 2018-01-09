@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import PostList from '../../components/post/PostList'
+import PostListContent from '../../components/post/PostListContent'
 
 class TagTemplate extends React.PureComponent {
   render() {
@@ -9,10 +10,9 @@ class TagTemplate extends React.PureComponent {
     const { edges: posts } = data.allMarkdownRemark
 
     return (
-      <div className="tag-container">
-        <Helmet title={`Posts tagged as "${tag}"`} />
+      <PostListContent title={`Posts tagged as "${tag}"`}>
         <PostList posts={posts} />
-      </div>
+      </PostListContent>
     )
   }
 }

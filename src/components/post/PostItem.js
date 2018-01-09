@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import classNames from 'classnames'
-import Link from 'gatsby-link'
+import InternalLink from '../InternalLink'
 
 import { withStyles } from 'material-ui/styles'
 import Card, { CardHeader, CardContent, CardMedia } from 'material-ui/Card'
@@ -20,6 +20,11 @@ const styles = theme => ({
   flexGrow: {
     flex: '1 1 auto'
   },
+  title: {
+    '&:hover': {
+      color: theme.colors.brand
+    }
+  },
   content: {
     fontSize: '18px!important' // override 'readable' global class
   }
@@ -32,9 +37,11 @@ const PostItem = ({ post, classes }) => (
   <Card className={classes.card}>
     <CardHeader
       title={
-        <Link to={post.fields.slug}>
-          <Typography type="title">{post.frontmatter.title}</Typography>
-        </Link>
+        <InternalLink to={post.fields.slug}>
+          <Typography type="title" classes={{ root: classes.title }}>
+            {post.frontmatter.title}
+          </Typography>
+        </InternalLink>
       }
       subheader={
         <Typography type="subheading">
