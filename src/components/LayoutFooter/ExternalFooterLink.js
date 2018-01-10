@@ -23,7 +23,11 @@ const ExternalFooterLink = ({
   classes,
   href,
   target = '_blank',
-  rel = 'noopener'
+  // In case you are using external links with target="_blank", your link should have a 
+  // rel="noopener" attribute to prevent tab nabbing. If you need to support older versions of 
+  // Firefox, use rel="noopener noreferrer"
+  // https://frontendchecklist.io/
+  rel = 'noopener noreferrer'
 }) => (
   <a className={classes.root} href={href} target={target} rel={rel}>
     {children}

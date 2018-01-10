@@ -30,14 +30,19 @@ const styles = theme => ({
     marginRight: 10,
     height: '100%',
     alignItems: 'center',
-    color: theme.colors.brand,
+    color: `${theme.colors.brand}!important`,
 
     lineHeight: '20px',
     fontSize: '20px',
 
-    ':focus': {
+    '&:focus': {
       outline: 0,
       color: theme.colors.white
+    },
+
+    '&:hover': {
+      outline: 0,
+      color: theme.colors.brand
     },
 
     [theme.breakpoints.up('sm')]: {
@@ -50,15 +55,17 @@ const styles = theme => ({
 })
 
 const Header = ({ classes }) => (
-  <AppBar position="fixed" color="primary" classes={{ root: classes.root }}>
-    <Toolbar classes={{ root: classes.toolbar }}>
-      <Container>
-        <Link to="/" className={classes.brand}>
-          {getWebsiteTitle()}
-        </Link>
-      </Container>
-    </Toolbar>
-  </AppBar>
+  <header>
+    <AppBar position="fixed" color="primary" classes={{ root: classes.root }}>
+      <Toolbar classes={{ root: classes.toolbar }}>
+        <Container>
+          <Link to="/" className={classes.brand}>
+            {getWebsiteTitle()}
+          </Link>
+        </Container>
+      </Toolbar>
+    </AppBar>
+  </header>
 )
 
 export default withStyles(styles)(Header)

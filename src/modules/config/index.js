@@ -7,9 +7,6 @@
 
 export const getWebsiteTitle = () => 'Astek community'
 
-export const getDefaultMeta = () => [
-  { name: 'description', content: 'TODO' },
-  { name: 'keywords', content: 'TODO' }
-]
+export const getWebsiteDescription = () => 'TODO: description'
 
 export const isProduction = () => process.env.NODE_ENV === 'production'

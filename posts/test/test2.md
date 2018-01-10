@@ -6,7 +6,7 @@ template: article
 description: Second article test
 author: Loïc Lefloch
 coverImage: https://octodex.github.com/images/minion.png
-draft: true
+draft: false
 tags:
   - tag1
   - tag2

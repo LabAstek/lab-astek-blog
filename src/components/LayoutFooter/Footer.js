@@ -27,7 +27,7 @@ const styles = theme => ({
   },
   link: {
     color: theme.colors.white,
-    ':hover': {
+    '&:hover': {
       color: theme.colors.brand
     }
   },

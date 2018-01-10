@@ -34,6 +34,7 @@ const ArticleTemplate = ({
   return (
     <div>
       <ArticleHelmet excerpt={excerpt} frontmatter={frontmatter} />
+
       <Grid container spacing={0}>
         {/* Allow us to center our article-content */}
         {/* TODO: hide on xs / sm */}
@@ -73,8 +74,8 @@ ArticleTemplate.propTypes = {
 }
 
 export const pageQuery = graphql`
-  query BlogPostByPath($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+  query BlogPostByPath($path: String!) {
+    markdownRemark(frontmatter: { path: { eq: $path } }) { 
       html
       excerpt
       timeToRead
@@ -88,10 +89,6 @@ export const pageQuery = graphql`
         coverImage
         tags
         category
-      }
-      fields {
-        slug
-        # toc { ... }
       }
     }
   }

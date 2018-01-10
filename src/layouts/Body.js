@@ -6,8 +6,10 @@ import PropTypes from 'prop-types'
 // const SmoothScroll = require('smooth-scroll')
 
 import withRoot from '../modules/ssr/withRoot'
+import Meta from './Meta'
 import Header from './Header'
 import LayoutFooter from '../components/LayoutFooter'
+
 
 // Note: gatsby handle badly the reloading of the layouts/index with HMR, so all our code goes here
 
@@ -35,6 +37,8 @@ const Body = ({ children }) => (
       height: '100%'
     }}
   >
+    <Meta />
+
     <Header />
 
     <div

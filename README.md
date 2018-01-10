@@ -5,6 +5,8 @@
 - [] favicon
 - [] Image viewer
 - [] Environment variables (https://www.gatsbyjs.org/docs/environment-variables/)
+- [] frontendchecklist.com/
+  - [] Replace inline style by withStyles
 - [] Helmet SEO tags (og, etc) on ArticleTemplate
   - https://github.com/Vagr9K/gatsby-advanced-starter/blob/master/src/components/SEO/SEO.jsx
 - [] Sitemap (https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/)

@@ -1,8 +1,13 @@
-// const metadata = require('./metadata.json')
+// website metadata (configuration, etc)
+const metadata = require('./metadata.json')
 
+//
+// Gatsby configuration.
+// Define the different plugins to use.
+//
 module.exports = {
   plugins: [
-    // read markdown files
+    // read markdown files and parse them to be used as posts.
     // https://github.com/gatsbyjs/gatsby/blob/master/docs/docs/adding-markdown-pages.md
     {
       resolve: `gatsby-source-filesystem`,
@@ -11,14 +16,14 @@ module.exports = {
         name: 'markdown-pages'
       }
     },
-    // transform markdown files
+    // transform markdown files to html
     // https://github.com/gatsbyjs/gatsby/blob/master/docs/docs/adding-markdown-pages.md
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-images
           // Processes images in markdown so they can be used in the production build.
+          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-images
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -44,6 +49,7 @@ module.exports = {
               sizeByPixelDensity: false
             }
           },
+          // add additionnal meta to external links on markdown.
           // https://github.com/JLongley/gatsby-remark-external-links
           {
             resolve: 'gatsby-remark-external-links',
@@ -52,18 +58,19 @@ module.exports = {
               rel: 'nofollow'
             }
           },
+          // Custom plugin.
           // add 'id' to html titles (h1, etc)
           // plugins/gatsby-remark-titles
           {
             resolve: 'gatsby-remark-titles'
           },
-          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-copy-linked-files
           // Copies local files linked to/from markdown to your public folder.
+          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-copy-linked-files
           {
             resolve: 'gatsby-remark-copy-linked-files'
           },
-          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-prismjs
           // Adds syntax highlighting to code blocks in markdown files using PrismJS
+          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-prismjs
           // (http://prismjs.com/).
           {
             resolve: `gatsby-remark-prismjs`,
@@ -78,8 +85,8 @@ module.exports = {
               classPrefix: 'language-'
             }
           },
-          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-embed-snippet
           // Embeds the contents of specified files within Prism-formatted HTML blocks.
+          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-embed-snippet
           {
             resolve: 'gatsby-remark-embed-snippet',
             options: {
@@ -102,27 +109,52 @@ module.exports = {
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
-    // https://www.gatsbyjs.org/packages/gatsby-plugin-react-next/
     // Use React 16 with your Gatsby v1 site. (Gatsby v1 ships with React 15 by default)
     // It automatically includes the two recommended polyfills for ES6 map/set so adding this to 
     // your site is drop-in upgrade to React 16.
+    // https://www.gatsbyjs.org/packages/gatsby-plugin-react-next/
     {
       resolve: `gatsby-plugin-react-next`,
+    },
+    // Add canonical links to HTML pages Gatsby generates.
+    // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-canonical-urls
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `${metadata.websiteUrl}`,
+      },
     },
     // This plugin takes your configuration and generates a web manifest file so our website can
     // be added to an Android homescreen
     // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-manifest
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `${metadata.websiteName}`,
-    //     short_name: `${metadata.websiteShortName}`,
-    //     start_url: `/`,
-    //     background_color: `${metadata.backgroundColor}`,
-    //     theme_color: `${metadata.themeColor}`,
-    //     display: `minimal-ui`
-    //   }
-    // },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `${metadata.websiteName}`,
+        short_name: `${metadata.websiteShortName}`,
+        start_url: `/`,
+        background_color: `${metadata.backgroundColor}`,
+        theme_color: `${metadata.themeColor}`,
+        display: `minimal-ui`,
+        icons: [
+          // TODO: icons
+          // {
+          //   // Everything in /static will be copied to an equivalent
+          //   // directory in /public during development and build, so
+          //   // assuming your favicons are in /static/favicons,
+          //   // you can reference them here
+          //   src: `/favicons/android-chrome-192x192.png`,
+          //   sizes: `192x192`,
+          //   type: `image/png`,
+          // },
+          // {
+          //   src: `/favicons/android-chrome-512x512.png`,
+          //   sizes: `512x512`,
+          //   type: `image/png`,
+          // },
+        ],
+      }
+    },
     // This plugin generates a service worker and AppShell
     // html file so the site works offline and is otherwise
     // resistant to bad networks. Works with almost any
@@ -130,14 +162,14 @@ module.exports = {
     // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-offline/README.md
     //
     // must be after gatsby-plugin-manifest configuration
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
     // Sets up google analytics
     // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/README.md
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: `` // TODO: add trackingId
-    //   }
-    // }
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `` // TODO: add trackingId
+      }
+    }
   ]
 }

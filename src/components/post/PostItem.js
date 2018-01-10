@@ -37,7 +37,7 @@ const PostItem = ({ post, classes }) => (
   <Card className={classes.card}>
     <CardHeader
       title={
-        <InternalLink to={post.fields.slug}>
+        <InternalLink to={post.frontmatter.path}>
           <Typography type="title" classes={{ root: classes.title }}>
             {post.frontmatter.title}
           </Typography>

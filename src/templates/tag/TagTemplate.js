@@ -28,9 +28,6 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
-          fields {
-            slug
-          }
           excerpt
           timeToRead
           frontmatter {

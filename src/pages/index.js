@@ -41,10 +41,6 @@ export const pageQuery = graphql`
             coverImage
             tags
           }
-          fields {
-            slug
-            # toc { ... }
-          }
         }
       }
     }
