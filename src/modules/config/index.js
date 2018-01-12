@@ -5,8 +5,12 @@
 // api, etc
 //
 
-export const getWebsiteTitle = () => 'Astek community'
+import metadata from '../../../metadata'
 
-export const getWebsiteDescription = () => 'TODO: description'
+export const getWebsiteTitle = () => metadata.websiteName
+
+export const getWebsiteDescription = () => metadata.description
 
 export const isProduction = () => process.env.NODE_ENV === 'production'
+
+export const getLabAstekGithubUrl = () => metadata.labAstekGithubUrl

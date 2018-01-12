@@ -46,6 +46,7 @@ const Body = ({ children }) => (
         marginTop: 80, // space for header
         height: '100%'
       }}
+      role="main" // good practice (https://frontendchecklist.io/)
     >
       {children()}
     </div>

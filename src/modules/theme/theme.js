@@ -3,6 +3,8 @@ import { createMuiTheme } from 'material-ui/styles'
 import indigo from 'material-ui/colors/indigo'
 import red from 'material-ui/colors/red'
 
+// Note: logo is red['600']
+
 const muiTheme = createMuiTheme({
   palette: {
     primary: {

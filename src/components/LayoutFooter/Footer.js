@@ -5,7 +5,7 @@ import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 
 import Container from '../Container'
-import { getWebsiteTitle } from '../../modules/config/index'
+import { getWebsiteTitle, getLabAstekGithubUrl } from '../../modules/config'
 
 import InternalFooterLink from './InternalFooterLink'
 import ExternalFooterLink from './ExternalFooterLink'
@@ -100,7 +100,7 @@ const Footer = ({ classes }) => (
               <span className={classes.sectionTitle}>Channels</span>
             </Typography>
 
-            <ExternalFooterLink href="">
+            <ExternalFooterLink href={getLabAstekGithubUrl()}>
                 GitHub
             </ExternalFooterLink>
           </section>

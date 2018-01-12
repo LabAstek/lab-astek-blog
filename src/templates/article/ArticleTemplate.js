@@ -29,8 +29,8 @@ import { generateToc } from '../../modules/post/utils/toc'
 const ArticleTemplate = ({
   data // this prop will be injected by the GraphQL query below.
 }) => {
-  const { markdownRemark } = data // data.markdownRemark holds our post data
-  const { frontmatter, html, excerpt } = formatPost(markdownRemark)
+  const markdownRemark = formatPost(data.markdownRemark) // data.markdownRemark holds our post data
+  const { frontmatter, html, excerpt } = markdownRemark
   return (
     <div>
       <ArticleHelmet excerpt={excerpt} frontmatter={frontmatter} />
@@ -46,7 +46,7 @@ const ArticleTemplate = ({
               color: '#636363', // TODO: use material-ui theme
               fontSize: '38px',
               textAlign: 'center',
-              marginTop: '20px',
+              marginTop: '20px'
             }}
           >
             {frontmatter.title}
@@ -61,7 +61,10 @@ const ArticleTemplate = ({
         </Grid>
 
         <Grid item xs={12} md={2}>
-          <ArticleMeta frontmatter={frontmatter} toc={generateToc(html)} />
+          <ArticleMeta
+            toc={generateToc(html)}
+            markdownRemark={markdownRemark}
+          />
         </Grid>
       </Grid>
     </div>
@@ -75,7 +78,7 @@ ArticleTemplate.propTypes = {
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) { 
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       excerpt
       timeToRead
@@ -89,6 +92,10 @@ export const pageQuery = graphql`
         coverImage
         tags
         category
+      }
+      fields {
+        filepath
+        githubPath
       }
     }
   }

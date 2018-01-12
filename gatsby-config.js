@@ -1,11 +1,18 @@
 // website metadata (configuration, etc)
-const metadata = require('./metadata.json')
+const metadata = require('./metadata')
+const moment = require('moment')
 
 //
 // Gatsby configuration.
 // Define the different plugins to use.
 //
 module.exports = {
+  siteMetadata: {
+    // required by rss and sitemap
+    siteUrl: metadata.websiteUrl,
+    rssFeedTitle: metadata.rssTitle,
+    rssFeedDescription: metadata.description,
+  },
   plugins: [
     // read markdown files and parse them to be used as posts.
     // https://github.com/gatsbyjs/gatsby/blob/master/docs/docs/adding-markdown-pages.md
@@ -103,6 +110,24 @@ module.exports = {
               // eg examples/path/to/file.js
               directory: `${__dirname}/posts/`
             }
+          },
+          // Wraps iframes or objects (e.g. embedded YouTube videos) within markdown files in a
+          // responsive elastic container with a fixed aspect ratio. This ensures that the iframe
+          // or object will scale proportionally and to the full width of its container.
+          // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-responsive-iframe
+          `gatsby-remark-responsive-iframe`,
+          // This plug-in adds support for generating links to popular REPLs, using code in local
+          // files to populate the contents of the REPL.
+          // This enables example code to be stored along side of, and revisioned with,
+          // your website content.
+          {
+            resolve: 'gatsby-remark-code-repls',
+            options: {
+              defaultText: 'Try it on CodePen',
+              directory: `${__dirname}/posts/`,
+              redirectTemplate: `${__dirname}/src/templates/codepen-example.js`,
+              target: '_blank'
+            }
           }
         ]
       }
@@ -110,19 +135,19 @@ module.exports = {
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     // Use React 16 with your Gatsby v1 site. (Gatsby v1 ships with React 15 by default)
-    // It automatically includes the two recommended polyfills for ES6 map/set so adding this to 
+    // It automatically includes the two recommended polyfills for ES6 map/set so adding this to
     // your site is drop-in upgrade to React 16.
     // https://www.gatsbyjs.org/packages/gatsby-plugin-react-next/
     {
-      resolve: `gatsby-plugin-react-next`,
+      resolve: `gatsby-plugin-react-next`
     },
     // Add canonical links to HTML pages Gatsby generates.
     // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-canonical-urls
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `${metadata.websiteUrl}`,
-      },
+        siteUrl: `${metadata.websiteUrl}`
+      }
     },
     // This plugin takes your configuration and generates a web manifest file so our website can
     // be added to an Android homescreen
@@ -135,24 +160,23 @@ module.exports = {
         start_url: `/`,
         background_color: `${metadata.backgroundColor}`,
         theme_color: `${metadata.themeColor}`,
-        display: `minimal-ui`,
+        display: `standalone`, // minimal-ui
         icons: [
-          // TODO: icons
-          // {
-          //   // Everything in /static will be copied to an equivalent
-          //   // directory in /public during development and build, so
-          //   // assuming your favicons are in /static/favicons,
-          //   // you can reference them here
-          //   src: `/favicons/android-chrome-192x192.png`,
-          //   sizes: `192x192`,
-          //   type: `image/png`,
-          // },
-          // {
-          //   src: `/favicons/android-chrome-512x512.png`,
-          //   sizes: `512x512`,
-          //   type: `image/png`,
-          // },
-        ],
+          // Everything in /static will be copied to an equivalent
+          // directory in /public during development and build, so
+          // assuming your favicons are in /static/favicons,
+          // you can reference them here
+          {
+            src: '/icons/android-chrome-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
+          },
+          {
+            src: '/icons/android-chrome-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
+          }
+        ]
       }
     },
     // This plugin generates a service worker and AppShell
@@ -170,6 +194,87 @@ module.exports = {
       options: {
         trackingId: `` // TODO: add trackingId
       }
-    }
+    },
+    // Create an RSS feed (or multiple feeds) for your Gatsby site.
+    // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-feed
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        query: `
+         {
+          site {
+            siteMetadata {
+              title: rssFeedTitle
+              description: rssFeedDescription
+              siteUrl
+              site_url: siteUrl
+            }
+          }
+        }`,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return Object.assign(
+                  {},
+                  {
+                    title: edge.node.frontmatter.title,
+                    description: edge.node.html,
+                    date: moment(edge.node.frontmatter.date).format(
+                      'MMMM DD, YYYY, h:mm A'
+                    ),
+                    url: site.siteMetadata.siteUrl + edge.node.frontmatter.path,
+                    guid: site.siteMetadata.siteUrl + edge.node.frontmatter.path
+                  }
+                )
+              })
+            },
+            query: `
+              {
+                  allMarkdownRemark
+                  (limit: 10,
+                  ${metadata.isProduction ? metadata.draftFilter : ''}
+                  sort: { order: DESC, fields: [frontmatter___date] }
+                  ) {
+                    edges {
+                      node {
+                        frontmatter {
+                          date
+                          title
+                          path
+                        }
+                        html
+                      }
+                    }
+                  }
+                }
+            `,
+            output: '/feed.xml'
+          }
+        ]
+      }
+    },
+    // Intercepts local links from markdown and other non-react pages and does a client-side
+    // pushState to avoid the browser having to refresh the page.
+    // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-catch-links
+    `gatsby-plugin-catch-links`,
+    // Automatically shows the nprogress indicator when a page is delayed in loading
+    // (which Gatsby considers as one second after clicking on a link).
+    // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-nprogress
+    //
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `${metadata.themeColor}`,
+        showSpinner: true
+      }
+    },
+    `gatsby-plugin-sitemap`,
+    // Warning: MUST be in the end of the plugins array
+    // Automatically generates a _headers file and a _redirects file at the root of the public
+    // folder to configure HTTP headers and redirects on Netlify.
+    // https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-netlify
+    `gatsby-plugin-netlify`
   ]
 }

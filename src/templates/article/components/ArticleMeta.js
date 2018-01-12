@@ -8,6 +8,7 @@ import Typography from 'material-ui/Typography'
 import TocView from './TocView'
 import TagsList from './TagsList'
 import Category from './Category'
+import EditLink from './EditLink'
 
 const styles = theme => ({
   root: {
@@ -16,7 +17,7 @@ const styles = theme => ({
   }
 })
 
-const Author = ({ frontmatter }) =>
+const Author = ({ frontmatter, fields }) =>
   frontmatter.hasAuthor ? (
     <Typography
       style={{
@@ -27,22 +28,24 @@ const Author = ({ frontmatter }) =>
     </Typography>
   ) : null
 
-const ArticleMeta = ({ frontmatter, toc, classes }) => (
+const ArticleMeta = ({ markdownRemark, toc, classes }) => (
   <div className={classes.root}>
-    {frontmatter.date}
+    {markdownRemark.frontmatter.date}
 
-    <Author frontmatter={frontmatter} />
+    <Author frontmatter={markdownRemark.frontmatter} />
 
-    <Category category={frontmatter.category} />
+    <Category category={markdownRemark.frontmatter.category} />
 
-    <TagsList tags={frontmatter.tags} />
+    <EditLink markdownRemark={markdownRemark} />
+
+    <TagsList tags={markdownRemark.frontmatter.tags} />
 
     <TocView toc={toc} />
   </div>
 )
 
 ArticleMeta.propTypes = {
-  frontmatter: PropTypes.object.isRequired,
+  markdownRemark: PropTypes.object.isRequired,
   toc: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired
 }
