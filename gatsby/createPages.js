@@ -94,7 +94,9 @@ module.exports = ({ boundActionCreators, graphql }) => {
     const tagSet = new Set()
     const categorySet = new Set()
 
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+    const posts = result.data.allMarkdownRemark.edges
+
+    posts.forEach(({ node }, index) => {
       if (node.frontmatter.tags) {
         node.frontmatter.tags.forEach(tag => {
           tagSet.add(tag)
@@ -105,10 +107,17 @@ module.exports = ({ boundActionCreators, graphql }) => {
         categorySet.add(node.frontmatter.category)
       }
 
+      const prev = index === 0 ? false : posts[index - 1].node
+      const next = index === posts.length - 1 ? false : posts[index + 1].node
+
       createPage({
         path: node.frontmatter.path,
         component: getComponent(node),
-        context: {} // additional data can be passed via context
+        context: {
+          // additional data can be passed via context
+          prev,
+          next
+        }
       })
     })
 

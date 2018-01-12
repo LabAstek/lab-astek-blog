@@ -22,15 +22,19 @@ import CenterContent from '../../components/CenterContent'
 
 import ArticleMeta from './components/ArticleMeta'
 import ArticleHelmet from './components/ArticleHelmet'
+import Navigation from './components/Navigation'
 
 import Grid from 'material-ui/Grid'
 import { generateToc } from '../../modules/post/utils/toc'
 
 const ArticleTemplate = ({
-  data // this prop will be injected by the GraphQL query below.
+  data, // this prop will be injected by the GraphQL query below.
+  pathContext
 }) => {
   const markdownRemark = formatPost(data.markdownRemark) // data.markdownRemark holds our post data
   const { frontmatter, html, excerpt } = markdownRemark
+  const { next, prev } = pathContext
+
   return (
     <div>
       <ArticleHelmet excerpt={excerpt} frontmatter={frontmatter} />
@@ -58,6 +62,7 @@ const ArticleTemplate = ({
               dangerouslySetInnerHTML={{ __html: html }}
             />
           </CenterContent>
+
         </Grid>
 
         <Grid item xs={12} md={2}>
@@ -66,6 +71,10 @@ const ArticleTemplate = ({
             markdownRemark={markdownRemark}
           />
         </Grid>
+          
+        <Grid item xs={12}>
+          <Navigation prev={prev} next={next} />
+        </Grid>
       </Grid>
     </div>
   )
@@ -73,7 +82,8 @@ const ArticleTemplate = ({
 
 ArticleTemplate.propTypes = {
   // injected by the GraphQL request `pageQuery`
-  data: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired,
+  pathContext: PropTypes.object.isRequired,
 }
 
 export const pageQuery = graphql`

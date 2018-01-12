@@ -30,8 +30,8 @@ const styles = theme => ({
   }
 })
 
-const Author = frontmatter =>
-  frontmatter.hasAuthor ? <span>- {frontmatter.author}</span> : null
+const Author = ({ frontmatter }) =>
+  frontmatter.hasAuthor ? <span> - {frontmatter.author}</span> : null
 
 const PostItem = ({ post, classes }) => (
   <Card className={classes.card}>
