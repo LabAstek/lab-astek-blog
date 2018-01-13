@@ -19,6 +19,7 @@ export const formatPost = post => {
 
   // author
   post.frontmatter.hasAuthor = !isEmpty(post.frontmatter.author)
+  post.hasAuthor = !isEmpty(post.frontmatter.author)
 
   //
   // cover image

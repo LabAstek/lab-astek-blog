@@ -123,7 +123,7 @@ const AuthorView = ({ author, classes }) => (
             <div
               className={classeNames(classes.twitter, classes.socialMediaLabel)}
             >
-              @{author.github}
+              {author.github}
             </div>
           </ExternalLink>
         </div>

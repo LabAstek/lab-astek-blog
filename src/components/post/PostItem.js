@@ -33,8 +33,13 @@ const styles = theme => ({
   }
 })
 
-const Author = ({ frontmatter }) =>
-  frontmatter.hasAuthor ? <span> - {frontmatter.author}</span> : null
+const Author = ({ post }) =>
+  post.hasAuthor ? (
+    <span>
+      {' '}
+      - <InternalLink to={post.author.url}>{post.author.name}</InternalLink>
+    </span>
+  ) : null
 
 const PostItem = ({ post, classes }) => (
   <Card className={classes.card}>
@@ -58,7 +63,7 @@ const PostItem = ({ post, classes }) => (
         <Typography type="subheading">
           {post.frontmatter.date}
 
-          <Author frontmatter={post.frontmatter} />
+          <Author post={post} />
         </Typography>
       }
     />
