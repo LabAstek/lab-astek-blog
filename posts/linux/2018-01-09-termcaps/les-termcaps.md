@@ -4,23 +4,25 @@ date: "2018-01-08"
 title: "Les termcaps"
 template: article
 author: loiclefloch
-description: Termcap est une base de données des possibilités des terminaux
+coverImage: ./cover.jpg
+description: Termcap est une base de données des possibilités des terminaux permettant de déterminer les attributs visuels du terminal
 tags:
+  - termcaps
   - linux
-  - c
+  - language c
 ---
 
 > Termcap est une base de données des possibilités des terminaux (voir man termcaps). 
 > Cette bibliothèque est néanmoins obsolète et a été remplacée par ncurses.
 
-# Introduction
+## Introduction
 
 
 En langage c, la bibliothèque termcaps permet de tirer partis des possibilités du terminal. On peut l’utiliser, par exemple, pour s’y déplacer.
 
 Dans la page de manuel, on y vois décris les différentes possibilités, associées à un identifiant de deux lettres. Par exemple, us qui correspond à un début de soulignement.
 
-# Utilisation de la bibliothèque termcaps en c
+## Utilisation de la bibliothèque termcaps en c
 
 Les headers à inclure sont :
 
@@ -30,7 +32,7 @@ Les headers à inclure sont :
 
 A la compilation, on rajoute l’option : `-lncurses`
 
-# Initialisation des termcaps
+## Initialisation des termcaps
 
 On commence en tout premier lieu par appeler la fonction `tgetent(NULL, NomDuTerminal);`.
 Le nom du terminal se trouve dans la variable `TERM` de  l’environnement. On peut la récupérer grâce à la fonction `getenv`.
@@ -90,7 +92,7 @@ tcsetattr permet d’appliquer les changements : il prend en paramètres un int 
 
 Notre terminal est désormais prêt.
 
-## Rétablir le shell par défaut
+### Rétablir le shell par défaut
 
 Lorsque l’on change le comportement du shell, lorsque l’on quitte notre programme, il faut le faire revenir à son état par défaut. On utilise tcgetattr puis on applique à noter structure les mêmes changements fais précédemment.
 
@@ -104,9 +106,9 @@ if (tcsetattr(0, 0, &term) == -1)
    return (-1);
 ```
 
-# Exemples concrets d’utilisation
+## Exemples concrets d’utilisation
 
-## Repérer une touche
+### Repérer une touche
 
 Voici un petit code en c qui va repérer la touche. Il faut savoir que dans une telle configuration du terminal, read renverra un buffer de type char de 3 cases contenant dans chacune d’elle un nombre permettant d’identifier la touche. Dans la plupart des cas, il suffit de regarder la première case, mais pour les flèches par exemple, nous regarderont la seconde, la première case indiquant qu’il s’agit d’une flèche sans spécifier laquelle.
 
@@ -150,7 +152,7 @@ int voir_touche()
 Ce programme est volontairement restreint. Il s’agit juste ici de montrer comment l’on peut gérer les touches d’un terminal en c.
 
 
-# Aller plus loin : utiliser les possibilités des termcaps
+## Aller plus loin : utiliser les possibilités des termcaps
 
 Comme nous l’avons vus, les différentes possibilités, tel que souligner, son représentées par deux lettres. Voyons comment les utiliser :
 
@@ -174,7 +176,7 @@ tputs(res, 0, my_outc);
 
 Nous avons ici effacé l’écran à la manière d’un clear (Ctrl+L). Mais de nombreuses autres possibilités existent : souligner, surligner, se déplacer, etc.
 
-## Se mouvoir dans le terminal
+### Se mouvoir dans le terminal
 
 Nous avons vus comment lancer un évenement en fonction de la touche pressée. Nous pouvons donc savoir si l’utilisateur à appuyer sur la flèche gauche, la droite, sur espace, etc.
 

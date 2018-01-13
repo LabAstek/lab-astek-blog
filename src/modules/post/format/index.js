@@ -1,6 +1,8 @@
 import isEmpty from 'lodash/isEmpty'
 
 import { formatAuthor } from '../../author/format'
+
+import { getWebsiteUrl } from '../../config'
   
 export const formatPost = post => {
   // draft
@@ -32,6 +34,8 @@ export const formatPost = post => {
   //
   //
   post.author = formatAuthor(post.frontmatter.author)
+
+  post.url = `${getWebsiteUrl()}${post.frontmatter.path}`
 
   return post
 }

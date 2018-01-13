@@ -13,11 +13,17 @@ import TimeToRead from './TimeToRead'
 
 const styles = theme => ({
   root: {
-    // position: 'fixed',
-    marginTop: '10px',
+    //
+    // sticky mode
+    // Keep the sidebar sticky when scrolling
+    //
+    position: 'sticky',
+    top: 80,
+    paddingLeft: 0,
+    paddingRight: 0,
+    // end mode
     display: 'flex',
     flexDirection: 'column',
-    width: '100%'
   },
   dateContainer: {
     display: 'flex',

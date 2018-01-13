@@ -2,15 +2,16 @@
 
 ## TODO
 
-- [] favicon
+- [x] favicon
 - [] Image viewer
 - [] Environment variables (https://www.gatsbyjs.org/docs/environment-variables/)
-- [] frontendchecklist.com/
-  - [] Replace inline style by withStyles
-- [] Helmet SEO tags (og, etc) on ArticleTemplate
+- [x] frontendchecklist.com/
+- [] Replace inline style by withStyles
+- [x] Helmet SEO tags (og, etc) on ArticleTemplate
   - https://github.com/Vagr9K/gatsby-advanced-starter/blob/master/src/components/SEO/SEO.jsx
-- [] Sitemap (https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/)
-- [] Syntax highlighting (https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/)
+- [] test SEO with https://search.google.com/structured-data/testing-tool/u/0/
+- [x] Sitemap (https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/)
+- [x] Syntax highlighting (https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/)
 - [] Analytics
 
 ## What's included

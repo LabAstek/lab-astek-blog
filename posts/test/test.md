@@ -7,6 +7,10 @@ author: loiclefloch
 category: testCategory
 tags:
   - tag1
+  - tag2
+  - linux
+  - c
+  - final
 ---
 
 ![Cow](./resources/cow.jpeg)

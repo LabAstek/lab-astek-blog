@@ -5,7 +5,7 @@ import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 
 import Container from '../Container'
-import { getWebsiteTitle, getLabAstekGithubUrl } from '../../modules/config'
+import { getWebsiteTitle, getLabAstekGithubUrl, getLabAstekTwitterUrl } from '../../modules/config'
 
 import InternalFooterLink from './InternalFooterLink'
 import ExternalFooterLink from './ExternalFooterLink'
@@ -102,6 +102,10 @@ const Footer = ({ classes }) => (
 
             <ExternalFooterLink href={getLabAstekGithubUrl()}>
                 GitHub
+            </ExternalFooterLink>
+
+            <ExternalFooterLink href={getLabAstekTwitterUrl()}>
+                Twitter
             </ExternalFooterLink>
           </section>
         </Grid>

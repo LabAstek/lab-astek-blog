@@ -9,8 +9,15 @@ import metadata from '../../../metadata'
 
 export const getWebsiteTitle = () => metadata.websiteName
 
+export const getWebsiteUrl = () => metadata.websiteUrl
+
 export const getWebsiteDescription = () => metadata.description
 
 export const isProduction = () => process.env.NODE_ENV === 'production'
 
 export const getLabAstekGithubUrl = () => metadata.labAstekGithubUrl
+
+export const getTwitterUsername = () => metadata.twitterUsername
+
+export const getLabAstekTwitterUrl = () =>
+  `https://twitter.com/${getTwitterUsername()}`

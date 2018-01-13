@@ -37,7 +37,7 @@ const ArticleTemplate = ({
 
   return (
     <div>
-      <ArticleHelmet excerpt={excerpt} frontmatter={frontmatter} />
+      <ArticleHelmet markdownRemark={markdownRemark} />
 
       <Grid container spacing={0}>
         {/* Allow us to center our article-content */}

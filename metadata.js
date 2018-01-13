@@ -9,6 +9,7 @@ module.exports = {
   themeColor: '#f44336', // red500
   githubArticlesRepositoryUrl: 'https://github.com/LabAstek/articles',
   labAstekGithubUrl: 'https://github.com/LabAstek',
+  twitterUsername: '', // TODO: twitter username, without the @
   draftFilter: `
     filter: {
       frontmatter: { draft: { ne: true }}

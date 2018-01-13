@@ -24,8 +24,8 @@ const styles = theme => ({
   },
   avatar: {
     display: 'flex',
-    width: 50,
-    height: 50
+    width: 54,
+    height: 54
   },
   authorInfoArea: {
     fontSize: 16,

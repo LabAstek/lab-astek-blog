@@ -15,6 +15,8 @@
 .article-content {
   padding: 50px;
   color: $text-color;
+  // for very short articles, in order to push back the footer
+  min-height: 60vh;
 
   p {
     text-align: justify;

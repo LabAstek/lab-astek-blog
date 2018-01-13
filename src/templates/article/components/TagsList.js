@@ -6,7 +6,8 @@ import Chip from 'material-ui/Chip'
 
 const styles = theme => ({
   chip: {
-    margin: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
     cursor: 'pointer',
     height: '22px',
     letterSpacing: '0.04em',
@@ -19,7 +20,7 @@ const styles = theme => ({
     display: 'flex',
     // justifyContent: 'center',
     flexWrap: 'wrap',
-    marginTop: '10px',
+    marginTop: theme.spacing.unit * 2,
   }
 })
 
