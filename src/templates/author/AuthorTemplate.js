@@ -1,18 +1,24 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 
+import { formatAuthor } from '../../modules/author/format'
+
 import Page from '../../components/Page'
 import PostList from '../../components/post/PostList'
 import PostListContent from '../../components/post/PostListContent'
+import AuthorView from './components/AuthorView'
 
-class CategoryTemplate extends React.PureComponent {
+class AuthorTemplate extends React.PureComponent {
   render() {
     const { pathContext, data } = this.props
-    const { category } = pathContext
+    const { authorUsername } = pathContext
     const { edges: posts } = data.allMarkdownRemark
 
+    const author = formatAuthor(authorUsername)
+
     return (
-      <Page title={`Posts in category "${category}"`}>
+      <Page>
+        <AuthorView author={author} />
         <PostListContent>
           <PostList posts={posts} />
         </PostListContent>
@@ -23,11 +29,11 @@ class CategoryTemplate extends React.PureComponent {
 
 /* eslint no-undef: "off" */
 export const pageQuery = graphql`
-  query CategoryPage($category: String) {
+  query AuthorPosts($author: String) {
     allMarkdownRemark(
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { category: { eq: $category } } }
+      filter: { frontmatter: { author: { eq: $author } } }
     ) {
       totalCount
       edges {
@@ -50,4 +56,4 @@ export const pageQuery = graphql`
   }
 `
 
-export default CategoryTemplate
+export default AuthorTemplate

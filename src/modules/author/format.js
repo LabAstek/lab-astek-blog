@@ -1,4 +1,5 @@
 import isEmpty from 'lodash/isEmpty'
+import kebabCase from 'lodash/kebabCase'
 
 import { getAuthorForUsername } from './utils'
 
@@ -11,6 +12,8 @@ export const formatAuthor = username => {
 
   author.twitterUrl = `https://twitter.com/${author.twitter}`
   author.githubUrl = `https://github.com/${author.github}`
+
+  author.url = `/authors/${kebabCase(username)}`
 
   return author
 }

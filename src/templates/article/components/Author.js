@@ -9,7 +9,8 @@ import Typography from 'material-ui/Typography'
 import AvatarWithDefault from '../../../components/AvatarWithDefault'
 import TwitterIcon from '../../../components/svg/TwitterIcon'
 import GithubIcon from '../../../components/svg/GithubIcon'
-import ExternalLink from '../../../components/ExternalLink/ExternalLink'
+import ExternalLink from '../../../components/ExternalLink'
+import InternalLink from '../../../components/InternalLink'
 
 const styles = theme => ({
   root: {
@@ -55,22 +56,20 @@ const styles = theme => ({
 const Author = ({ markdownRemark, fields, classes }) =>
   markdownRemark.frontmatter.hasAuthor ? (
     <div className={classes.root}>
-      {/* TODO: link to author page on the blog */}
-      <ExternalLink href={markdownRemark.author.website}>
+      <InternalLink to={markdownRemark.author.url}>
         <AvatarWithDefault
           src={markdownRemark.author.avatar}
           placeholder={markdownRemark.author.name[0]}
           classes={{ root: classes.avatar }}
         />
-      </ExternalLink>
+      </InternalLink>
 
       <div className={classes.authorInfoArea}>
-        {/* TODO: link to author page on the blog */}
-        <ExternalLink href={markdownRemark.author.website}>
+        <InternalLink to={markdownRemark.author.url}>
           <Typography className={classes.author}>
             {markdownRemark.author.name}
           </Typography>
-        </ExternalLink>
+        </InternalLink>
 
         {markdownRemark.author.hasTwitter && (
           <ExternalLink href={markdownRemark.author.twitterUrl}>

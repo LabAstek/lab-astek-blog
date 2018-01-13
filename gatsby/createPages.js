@@ -10,11 +10,14 @@ const kebabCase = require('lodash/kebabCase')
 
 const path = require('path')
 
-const tagPage = path.resolve('src/templates/tag/TagTemplate.js')
-const categoryPage = path.resolve('src/templates/category/CategoryTemplate.js')
+const TagPage = path.resolve('src/templates/tag/TagTemplate.js')
+const CategoryPage = path.resolve('src/templates/category/CategoryTemplate.js')
+const AuthorPage = path.resolve('src/templates/author/AuthorTemplate.js')
 
+// contains a list of all the different templates that can be used by a post
+// It is defined on the `frontmatter.template` var.
 const Templates = {
-  ARTICLE: 'article'
+  ARTICLE: 'article' // default
 }
 
 const TemplatesPaths = {
@@ -93,6 +96,7 @@ module.exports = ({ boundActionCreators, graphql }) => {
     // see https://github.com/Vagr9K/gatsby-advanced-starter/blob/master/gatsby-node.js
     const tagSet = new Set()
     const categorySet = new Set()
+    const authorSet = new Set()
 
     const posts = result.data.allMarkdownRemark.edges
 
@@ -106,6 +110,8 @@ module.exports = ({ boundActionCreators, graphql }) => {
       if (node.frontmatter.category) {
         categorySet.add(node.frontmatter.category)
       }
+
+      authorSet.add(node.frontmatter.author)
 
       const prev = index === 0 ? false : posts[index - 1].node
       const next = index === posts.length - 1 ? false : posts[index + 1].node
@@ -125,7 +131,7 @@ module.exports = ({ boundActionCreators, graphql }) => {
     tagList.forEach(tag => {
       createPage({
         path: `/tags/${kebabCase(tag)}/`,
-        component: tagPage,
+        component: TagPage,
         context: {
           tag
         }
@@ -136,9 +142,20 @@ module.exports = ({ boundActionCreators, graphql }) => {
     categoryList.forEach(category => {
       createPage({
         path: `/categories/${kebabCase(category)}/`,
-        component: categoryPage,
+        component: CategoryPage,
         context: {
           category
+        }
+      })
+    })
+
+    const authorList = Array.from(authorSet)
+    authorList.forEach(author => {
+      createPage({
+        path: `/authors/${kebabCase(author)}`,
+        component: AuthorPage,
+        context: {
+          authorUsername: author
         }
       })
     })
