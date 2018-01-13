@@ -8,14 +8,14 @@ import Container from '../Container'
 const styles = theme => ({
   root: {
     minHeight: '70vh',
-    textAlign: 'center'
   },
   title: {
     marginTop: '100px',
+    textAlign: 'center'
   }
 })
 
-const AboutPage = ({ classes, children, title }) => (
+const Page = ({ classes, children, title }) => (
   <Container classes={{ root: classes.root }}>
     {!isEmpty(title) && <h1 className={classes.title}>{title}</h1>}
 
@@ -23,4 +23,4 @@ const AboutPage = ({ classes, children, title }) => (
   </Container>
 )
 
-export default withStyles(styles)(AboutPage)
+export default withStyles(styles)(Page)

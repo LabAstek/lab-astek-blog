@@ -3,7 +3,7 @@ path: "/blog/test"
 date: "2018-01-01"
 title: "My first blog post test"
 template: article
-author: Loïc Lefloch
+author: loiclefloch
 category: testCategory
 tags:
   - tag1

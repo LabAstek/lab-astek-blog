@@ -9,6 +9,11 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     cursor: 'pointer',
     height: '22px',
+    letterSpacing: '0.04em',
+    '&:hover': {
+      // background: theme.colors.dark,
+      color: theme.colors.brand,
+    }
   },
   row: {
     display: 'flex',

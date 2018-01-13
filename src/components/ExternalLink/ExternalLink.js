@@ -1,4 +1,5 @@
 import React from 'react'
+import isEmpty from 'lodash/isEmpty'
 import { withStyles } from 'material-ui/styles'
 
 const styles = theme => ({
@@ -10,10 +11,13 @@ const styles = theme => ({
   }
 })
 
-const InternalLink = ({ children, classes, href }) => (
-  <a href={href} className={classes.root} target="_blank">
-    {children}
-  </a>
-)
+const InternalLink = ({ children, classes, href }) =>
+  isEmpty(href) ? (
+    children
+  ) : (
+    <a href={href} className={classes.root} target="_blank">
+      {children}
+    </a>
+  )
 
 export default withStyles(styles)(InternalLink)

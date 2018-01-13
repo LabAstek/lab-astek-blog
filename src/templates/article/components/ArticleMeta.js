@@ -3,45 +3,48 @@ import PropTypes from 'prop-types'
 
 import { withStyles } from 'material-ui/styles'
 
-import Typography from 'material-ui/Typography'
-
+import Container from '../../../components/Container'
+import Author from './Author'
 import TocView from './TocView'
 import TagsList from './TagsList'
 import Category from './Category'
 import EditLink from './EditLink'
+import TimeToRead from './TimeToRead'
 
 const styles = theme => ({
   root: {
-    position: 'fixed',
+    // position: 'fixed',
     marginTop: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%'
+  },
+  dateContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    fontSize: '13px',
+    alignItems: 'center'
   }
 })
 
-const Author = ({ frontmatter, fields }) =>
-  frontmatter.hasAuthor ? (
-    <Typography
-      style={{
-        marginTop: '10px'
-      }}
-    >
-      {frontmatter.author}
-    </Typography>
-  ) : null
-
 const ArticleMeta = ({ markdownRemark, toc, classes }) => (
-  <div className={classes.root}>
-    {markdownRemark.frontmatter.date}
+  <Container classes={{ root: classes.root }}>
+    <Author markdownRemark={markdownRemark} />
 
-    <Author frontmatter={markdownRemark.frontmatter} />
+    <div className={classes.dateContainer}>
+      {markdownRemark.frontmatter.date}
+
+      <EditLink markdownRemark={markdownRemark} />
+    </div>
+
+    <TimeToRead markdownRemark={markdownRemark} />
 
     <Category category={markdownRemark.frontmatter.category} />
-
-    <EditLink markdownRemark={markdownRemark} />
 
     <TagsList tags={markdownRemark.frontmatter.tags} />
 
     <TocView toc={toc} />
-  </div>
+  </Container>
 )
 
 ArticleMeta.propTypes = {

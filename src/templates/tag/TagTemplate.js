@@ -1,5 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+
+import Page from '../../components/Page'
 import PostList from '../../components/post/PostList'
 import PostListContent from '../../components/post/PostListContent'
 
@@ -10,9 +12,11 @@ class TagTemplate extends React.PureComponent {
     const { edges: posts } = data.allMarkdownRemark
 
     return (
-      <PostListContent title={`Posts tagged as "${tag}"`}>
-        <PostList posts={posts} />
-      </PostListContent>
+      <Page title={`Posts tagged as "${tag}"`}>
+        <PostListContent>
+          <PostList posts={posts} />
+        </PostListContent>
+      </Page>
     )
   }
 }
@@ -28,13 +32,17 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
+          id
           excerpt
           timeToRead
           frontmatter {
             title
             tags
-            # cover
+            path
             date
+            description
+            author
+            coverImage
           }
         }
       }

@@ -34,6 +34,8 @@ const theme = {
     subtle: '#6d6d6d', // light grey for text
     subtleOnDark: '#999',
     brand: red[400],
+    twitter: '#1da1f2',
+    github: '#4078c0',
   }
 }
 

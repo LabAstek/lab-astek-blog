@@ -1,5 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+
+import Page from '../../components/Page'
 import PostList from '../../components/post/PostList'
 import PostListContent from '../../components/post/PostListContent'
 import Typography from 'material-ui/Typography/Typography'
@@ -11,9 +13,11 @@ class CategoryTemplate extends React.PureComponent {
     const { edges: posts } = data.allMarkdownRemark
 
     return (
-      <PostListContent title={`Posts in category "${category}"`}>
-        <PostList posts={posts} />
-      </PostListContent>
+      <Page title={`Posts in category "${category}"`}>
+        <PostListContent>
+          <PostList posts={posts} />
+        </PostListContent>
+      </Page>
     )
   }
 }
@@ -29,13 +33,17 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
+          id
           excerpt
           timeToRead
           frontmatter {
             title
             tags
-            # cover
+            path
             date
+            description
+            author
+            coverImage
           }
         }
       }

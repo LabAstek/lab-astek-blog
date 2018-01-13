@@ -3,7 +3,7 @@ path: "/blog/termcaps"
 date: "2018-01-08"
 title: "Les termcaps"
 template: article
-author: Loïc Lefloch
+author: loiclefloch
 description: Termcap est une base de données des possibilités des terminaux
 tags:
   - linux

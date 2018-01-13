@@ -8,7 +8,7 @@ import CenterContent from '../CenterContent'
 
 const styles = theme => ({
   root: {
-    marginBottom: '50px'
+    marginBottom: '50px',
   },
   title: {
     textAlign: 'center',

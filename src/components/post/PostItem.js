@@ -15,7 +15,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3
   },
   media: {
-    height: 194
+    height: 200
   },
   flexGrow: {
     flex: '1 1 auto'
@@ -27,6 +27,9 @@ const styles = theme => ({
   },
   content: {
     fontSize: '18px!important' // override 'readable' global class
+  },
+  cartContentRoot: {
+    borderTop: `1px solid ${theme.colors.divider}`
   }
 })
 
@@ -35,6 +38,14 @@ const Author = ({ frontmatter }) =>
 
 const PostItem = ({ post, classes }) => (
   <Card className={classes.card}>
+    {post.hasCoverImage ? (
+      <CardMedia
+        className={classes.media}
+        image={post.frontmatter.coverImage}
+        title={post.frontmatter.title}
+      />
+    ) : null}
+
     <CardHeader
       title={
         <InternalLink to={post.frontmatter.path}>
@@ -52,15 +63,11 @@ const PostItem = ({ post, classes }) => (
       }
     />
 
-    {post.hasCoverImage ? (
-      <CardMedia
-        className={classes.media}
-        image={post.frontmatter.coverImage}
-        title={post.frontmatter.title}
-      />
-    ) : null}
-
-    <CardContent>
+    <CardContent
+      classes={{
+        root: classes.cartContentRoot
+      }}
+    >
       <Typography
         component="p"
         className={classNames(classes.content, 'readable')}

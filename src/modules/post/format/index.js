@@ -1,4 +1,6 @@
 import isEmpty from 'lodash/isEmpty'
+
+import { formatAuthor } from '../../author/format'
   
 export const formatPost = post => {
   // draft
@@ -20,6 +22,16 @@ export const formatPost = post => {
   // cover image
   //
   post.hasCoverImage = !isEmpty(post.frontmatter.coverImage)
+
+  //
+  // time to read
+  //
+  post.timeToReadFormatted = `${post.timeToRead} min`
+
+  //
+  //
+  //
+  post.author = formatAuthor(post.frontmatter.author)
 
   return post
 }

@@ -1,30 +1,46 @@
 import React from 'react'
 import isEmpty from 'lodash/isEmpty'
 import kebabCase from 'lodash/kebabCase'
+import withStyles from 'material-ui/styles/withStyles'
+
 import Link from 'gatsby-link'
-import Typography from 'material-ui/Typography'
+import Class from 'material-ui-icons/Class'
 
-const Category = ({ category }) =>
+const styles = theme => ({
+  root: {
+    marginTop: theme.spacing.unit,
+    fontSize: 16,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    color: theme.colors.lighter,
+    '&:hover': {
+      color: theme.colors.brand
+    }
+  },
+  icon: {
+    // should be same as TimeToRead
+    width: 20,
+    height: 20,
+  },
+  label: {
+    marginLeft: theme.spacing.unit
+  }
+})
+
+const Category = ({ category, classes }) =>
   isEmpty(category) ? null : (
-    <div>
-      <Typography
-        style={{
-          marginTop: '10px'
-        }}
-      >
-        Category:
-      </Typography>
+    <div className={classes.root}>
+      <Class classes={{ root: classes.icon }} />
 
-      <div style={{ marginTop: '6px' }}>
-        <Link
-          key={category}
-          style={{ textDecoration: 'none' }}
-          to={`/categories/${kebabCase(category)}`}
-        >
-          {category}
-        </Link>
-      </div>
+      <Link
+        key={category}
+        className={classes.label}
+        to={`/categories/${kebabCase(category)}`}
+      >
+        {category}
+      </Link>
     </div>
   )
 
-export default Category
+export default withStyles(styles)(Category)
