@@ -14,14 +14,17 @@ const styles = theme => ({
     '&:hover': {
       // background: theme.colors.dark,
       color: theme.colors.brand,
-    }
+    },
   },
   row: {
     display: 'flex',
     // justifyContent: 'center',
     flexWrap: 'wrap',
     marginTop: theme.spacing.unit * 2,
-  }
+    [theme.breakpoints.down('md')]: {
+      justifyContent: 'center',
+    },
+  },
 })
 
 const TagsList = ({ tags, classes }) => (

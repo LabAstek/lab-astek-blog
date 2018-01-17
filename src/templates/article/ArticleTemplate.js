@@ -26,10 +26,12 @@ import Navigation from './components/Navigation'
 
 import Grid from 'material-ui/Grid'
 import { generateToc } from '../../modules/post/utils/toc'
+import CoverImage from './components/CoverImage'
+import MobileMetaOnHeader from './components/MobileMetaOnHeader'
 
 const ArticleTemplate = ({
   data, // this prop will be injected by the GraphQL query below.
-  pathContext
+  pathContext,
 }) => {
   const markdownRemark = formatPost(data.markdownRemark) // data.markdownRemark holds our post data
   const { frontmatter, html, excerpt } = markdownRemark
@@ -50,11 +52,15 @@ const ArticleTemplate = ({
               color: '#636363', // TODO: use material-ui theme
               fontSize: '38px',
               textAlign: 'center',
-              marginTop: '20px'
+              marginTop: '20px',
             }}
           >
             {frontmatter.title}
           </h1>
+
+          <MobileMetaOnHeader markdownRemark={markdownRemark} />
+
+          <CoverImage frontmatter={frontmatter} />
 
           <CenterContent>
             <div
@@ -62,7 +68,6 @@ const ArticleTemplate = ({
               dangerouslySetInnerHTML={{ __html: html }}
             />
           </CenterContent>
-
         </Grid>
 
         <Grid item xs={12} md={2}>
@@ -71,7 +76,7 @@ const ArticleTemplate = ({
             markdownRemark={markdownRemark}
           />
         </Grid>
-          
+
         <Grid item xs={12}>
           <Navigation prev={prev} next={next} />
         </Grid>
@@ -99,7 +104,14 @@ export const pageQuery = graphql`
         description
         author
         draft
-        coverImage
+        coverImage {
+          childImageSharp {
+            sizes(maxWidth: 1200) {
+              src
+              srcSet
+            }
+          }
+        }
         tags
         category
       }

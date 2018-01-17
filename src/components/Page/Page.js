@@ -11,8 +11,8 @@ const styles = theme => ({
   },
   title: {
     marginTop: '100px',
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 })
 
 const Page = ({ classes, children, title }) => (

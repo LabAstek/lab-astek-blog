@@ -31,7 +31,7 @@ tags:
 - category: category in which the article should be present
 - tags: list of tags. Used for SEO and to list articles with the same tags.
   NOTE: It should be limited to 5 tags maximum
-- coverImage: url of the cover to use for this article
+- coverImage: relative path of the cover to use for this article. The picture name must begin with 'cover.'
 
 ## Content
 

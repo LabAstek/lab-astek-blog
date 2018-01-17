@@ -10,7 +10,7 @@ import AuthorView from './components/AuthorView'
 
 class AuthorTemplate extends React.PureComponent {
   render() {
-    const { pathContext, data } = this.props
+    const { pathContext, data, classes } = this.props
     const { authorUsername } = pathContext
     const { edges: posts } = data.allMarkdownRemark
 
@@ -48,7 +48,14 @@ export const pageQuery = graphql`
             date
             description
             author
-            coverImage
+            coverImage {
+              childImageSharp {
+                sizes(maxWidth: 1200) {
+                  src
+                  srcSet
+                }
+              }
+            }
           }
         }
       }

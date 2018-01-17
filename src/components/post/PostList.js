@@ -8,8 +8,12 @@ import PostItem from './PostItem'
 
 const styles = theme => ({
   root: {
-    marginBottom: theme.spacing.unit * 5
-  }
+    marginBottom: theme.spacing.unit * 5,
+
+    [theme.breakpoints.down('md')]: {
+      padding: '0',
+    },
+  },
 })
 
 const PostList = ({ posts, classes }) => (
@@ -23,7 +27,7 @@ const PostList = ({ posts, classes }) => (
 )
 
 PostList.propTypes = {
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
 }
 
 export default withStyles(styles)(PostList)

@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import classNames from 'classnames'
 import { withStyles } from 'material-ui/styles'
 
 import Container from '../../../components/Container'
 import Author from './Author'
-import TocView from './TocView'
 import TagsList from './TagsList'
 import Category from './Category'
 import EditLink from './EditLink'
@@ -29,34 +29,46 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'row',
     fontSize: '13px',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
+  timeToReadContainer: {},
+  tocContainer: {},
+  hideOnMobile: {
+    [theme.breakpoints.down('md')]: {
+      // hide component on mobile.
+      // Toc: will not be displayed
+      // EditLink, TimeToRead: displayed on top of the page
+      display: 'none',
+    },
+  },
 })
 
-const ArticleMeta = ({ markdownRemark, toc, classes }) => (
+const ArticleMeta = ({ markdownRemark, classes }) => (
   <Container classes={{ root: classes.root }}>
     <Author markdownRemark={markdownRemark} />
 
-    <div className={classes.dateContainer}>
+    <div className={classNames(classes.dateContainer, classes.hideOnMobile)}>
       {markdownRemark.frontmatter.date}
 
       <EditLink markdownRemark={markdownRemark} />
     </div>
 
-    <TimeToRead markdownRemark={markdownRemark} />
+    <div
+      className={classNames(classes.timeToReadContainer, classes.hideOnMobile)}
+    >
+      <TimeToRead markdownRemark={markdownRemark} />
+    </div>
 
     <Category category={markdownRemark.frontmatter.category} />
 
     <TagsList tags={markdownRemark.frontmatter.tags} />
-
-    <TocView toc={toc} />
   </Container>
 )
 
 ArticleMeta.propTypes = {
   markdownRemark: PropTypes.object.isRequired,
   toc: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 }
 
 export default withStyles(styles)(ArticleMeta)

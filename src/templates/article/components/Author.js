@@ -17,40 +17,70 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+    [theme.breakpoints.down('md')]: {
+      borderTop: `1px solid ${theme.colors.divider}`,
+      paddingTop: theme.spacing.unit * 3,
+    },
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
     width: '100%',
-    borderBottom: `1px solid ${theme.colors.divider}`
+    borderBottom: `1px solid ${theme.colors.divider}`,
   },
   avatar: {
     display: 'flex',
     width: 54,
-    height: 54
+    height: 54,
+    [theme.breakpoints.down('md')]: {
+      margin: '0 auto',
+    }
   },
   authorInfoArea: {
     fontSize: 16,
-    paddingLeft: theme.spacing.unit
+    paddingLeft: theme.spacing.unit,
   },
   author: {
     fontSize: 18,
+    '&:hover': {
+      color: theme.colors.brand,
+    },
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center',
+      fontSize: 21,
+      marginTop: theme.spacing.unit,
+    }
+  },
+  socialArea: {
+    [theme.breakpoints.down('md')]: {
+      marginTop: theme.spacing.unit,
+      textAlign: 'center',
+    }
   },
   socialIcon: {
     width: 16,
     height: 16,
     color: theme.colors.lighter,
     marginRight: theme.spacing.unit,
+    [theme.breakpoints.down('md')]: {
+      width: 48,
+      height: 48,
+      marginLeft: theme.spacing.unit * 4,
+      marginRight: theme.spacing.unit * 4,
+      marginTop: theme.spacing.unit,
+    },
   },
   twitter: {
     '&:hover': {
-      fill: theme.colors.twitter
-    }
+      fill: theme.colors.twitter,
+    },
   },
   github: {
     '&:hover': {
-      fill: theme.colors.github
-    }
-  }
+      fill: theme.colors.github,
+    },
+  },
 })
 
 const Author = ({ markdownRemark, fields, classes }) =>
@@ -71,21 +101,23 @@ const Author = ({ markdownRemark, fields, classes }) =>
           </Typography>
         </InternalLink>
 
-        {markdownRemark.author.hasTwitter && (
-          <ExternalLink href={markdownRemark.author.twitterUrl}>
-            <TwitterIcon
-              className={classeNames(classes.socialIcon, classes.twitter)}
-            />
-          </ExternalLink>
-        )}
+        <div className={classes.socialArea}>
+          {markdownRemark.author.hasTwitter && (
+            <ExternalLink href={markdownRemark.author.twitterUrl}>
+              <TwitterIcon
+                className={classeNames(classes.socialIcon, classes.twitter)}
+              />
+            </ExternalLink>
+          )}
 
-        {markdownRemark.author.hasGithub && (
-          <ExternalLink href={markdownRemark.author.githubUrl}>
-            <GithubIcon
-              className={classeNames(classes.socialIcon, classes.github)}
-            />
-          </ExternalLink>
-        )}
+          {markdownRemark.author.hasGithub && (
+            <ExternalLink href={markdownRemark.author.githubUrl}>
+              <GithubIcon
+                className={classeNames(classes.socialIcon, classes.github)}
+              />
+            </ExternalLink>
+          )}
+        </div>
       </div>
     </div>
   ) : null

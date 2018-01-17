@@ -2,3 +2,30 @@ $font-readable: Georgia, Cambria, "Times New Roman", Times, serif;
 $font-sans-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 $text-color: #28343d;
 $content-text-color: rgba(0, 0, 0, 0.8);
+
+
+/*********************
+BREAKPOINTS
+*********************/
+
+@mixin breakpoint($class) {
+  @if $class == xs {
+    @media (max-width: 767px) { @content; }
+  }
+ 
+  @else if $class == sm {
+    @media (min-width: 768px) { @content; }
+  }
+ 
+  @else if $class == md {
+    @media (min-width: 992px) { @content; }
+  }
+ 
+  @else if $class == lg {
+    @media (min-width: 1200px) { @content; }
+  }
+ 
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
+}

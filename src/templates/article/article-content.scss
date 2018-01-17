@@ -13,7 +13,13 @@
 }
 
 .article-content {
-  padding: 50px;
+  @include breakpoint('xs') {
+    padding: 12px;
+  }
+  @include breakpoint('md') {
+    padding: 50px;
+  }
+
   color: $text-color;
   // for very short articles, in order to push back the footer
   min-height: 60vh;
@@ -57,6 +63,7 @@
   }
 
   h1 {
+    // Note: for SEO reasons, we should not have h1 titles on articles
     font-family: $font-sans-serif;
     margin-top: 60px;
     line-height: 50px;
@@ -64,38 +71,69 @@
   }
 
   h2 {
-    font-size: 30px;
     font-family: $font-sans-serif;
-    margin-top: 60px;
-    font-weight: 700;
+
+    @include breakpoint('xs') {
+      margin-top: 40px;
+      line-height: 40px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    @include breakpoint('md') {
+      font-size: 30px;
+      margin-top: 60px;
+      font-weight: 700;
+    }
   }
 
   h3 {
-    font-size: 1.17em;
     font-family: $font-sans-serif;
-    font-size: 28px;
+
+    @include breakpoint('xs') {
+      margin-top: 40px;
+      line-height: 40px;
+      font-size: 21px;
+    } 
+
+    @include breakpoint('md') {
+      margin-top: 60px;
+      font-size: 1.17em;
+      font-size: 28px;
+    }
+
     font-weight: 600;
-    margin-top: 60px;
     color: #28343d;
   }
 
   h4 {
     font-family: $font-sans-serif;
-    font-size:24px;
-    font-style:normal;
-    font-weight:300;
+
+    @include breakpoint('xs') {
+      margin-top: 40px;
+      line-height: 40px;
+      font-size: 21px;
+    } 
+    
+    margin-top: 30px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
     color: rgba(0, 0, 0, .44)!important;
-    height:34px;
-    letter-spacing:-0.616px;
-    line-height:34.16px;
-    margin-bottom:0px;
-    margin-left:-1.75px;
-    margin-right:0px;
-    margin-top:30px;
+    height: 34px;
+    letter-spacing: -0.616px;
+    line-height: 34.16px;
+    margin-bottom: 0px;
+    margin-left: -1.75px;
+    margin-right: 0px;
     word-wrap: break-word;
   }
 
   h5 {
+    @include breakpoint('xs') {
+      font-size: 20px;
+    } 
+
     font-family: $font-sans-serif;
     font-size: 21px;
     font-weight: 600;

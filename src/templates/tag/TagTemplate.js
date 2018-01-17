@@ -42,7 +42,14 @@ export const pageQuery = graphql`
             date
             description
             author
-            coverImage
+            coverImage {
+              childImageSharp {
+                sizes(maxWidth: 1200) {
+                  src
+                  srcSet
+                }
+              }
+            }
           }
         }
       }

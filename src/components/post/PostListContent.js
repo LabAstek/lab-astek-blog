@@ -13,8 +13,8 @@ const styles = theme => ({
   title: {
     textAlign: 'center',
     paddingTop: '20px',
-    paddingBottom: '20px'
-  }
+    paddingBottom: '20px',
+  },
 })
 
 const PostListContent = ({ children, classes, title }) => (
@@ -24,7 +24,7 @@ const PostListContent = ({ children, classes, title }) => (
     <Typography
       type="title"
       classes={{
-        root: classes.title
+        root: classes.title,
       }}
     >
       {title}

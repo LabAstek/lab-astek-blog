@@ -5,7 +5,6 @@ title: "Second blog post test"
 template: article
 description: Second article test
 author: loiclefloch
-coverImage: https://octodex.github.com/images/minion.png
 draft: false
 tags:
   - tag1

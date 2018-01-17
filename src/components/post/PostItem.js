@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import InternalLink from '../InternalLink'
 
 import { withStyles } from 'material-ui/styles'
+import Img from 'gatsby-image'
 import Card, { CardHeader, CardContent, CardMedia } from 'material-ui/Card'
 import Typography from 'material-ui/Typography'
 
@@ -12,25 +13,26 @@ import Typography from 'material-ui/Typography'
 const styles = theme => ({
   card: {
     maxWidth: 800,
-    marginTop: theme.spacing.unit * 3
+    marginTop: theme.spacing.unit * 3,
   },
   media: {
-    height: 200
+    height: '200px!important',
+    width: '100%!important',
   },
   flexGrow: {
-    flex: '1 1 auto'
+    flex: '1 1 auto',
   },
   title: {
     '&:hover': {
-      color: theme.colors.brand
-    }
+      color: theme.colors.brand,
+    },
   },
   content: {
-    fontSize: '18px!important' // override 'readable' global class
+    fontSize: '18px!important', // override 'readable' global class
   },
   cartContentRoot: {
-    borderTop: `1px solid ${theme.colors.divider}`
-  }
+    borderTop: `1px solid ${theme.colors.divider}`,
+  },
 })
 
 const Author = ({ post }) =>
@@ -44,10 +46,9 @@ const Author = ({ post }) =>
 const PostItem = ({ post, classes }) => (
   <Card className={classes.card}>
     {post.hasCoverImage ? (
-      <CardMedia
+      <Img
         className={classes.media}
-        image={post.frontmatter.coverImage}
-        title={post.frontmatter.title}
+        resolutions={post.frontmatter.coverImage.childImageSharp.sizes}
       />
     ) : null}
 
@@ -70,7 +71,7 @@ const PostItem = ({ post, classes }) => (
 
     <CardContent
       classes={{
-        root: classes.cartContentRoot
+        root: classes.cartContentRoot,
       }}
     >
       <Typography
@@ -85,7 +86,7 @@ const PostItem = ({ post, classes }) => (
 
 PostItem.propTypes = {
   post: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 }
 
 export default withStyles(styles)(PostItem)

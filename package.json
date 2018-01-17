@@ -6,6 +6,7 @@
   "dependencies": {
     "classnames": "2.2.5",
     "gatsby": "1.9.149",
+    "gatsby-image": "1.0.33",
     "gatsby-link": "^1.6.32",
     "gatsby-plugin-canonical-urls": "1.0.11",
     "gatsby-plugin-catch-links": "1.0.14",
@@ -18,6 +19,7 @@
     "gatsby-plugin-react-helmet": "2.0.3",
     "gatsby-plugin-react-next": "1.0.7",
     "gatsby-plugin-sass": "1.0.15",
+    "gatsby-plugin-sharp": "1.6.24",
     "gatsby-plugin-sitemap": "1.2.9",
     "gatsby-remark-code-repls": "1.0.8",
     "gatsby-remark-copy-linked-files": "1.5.25",
@@ -28,6 +30,7 @@
     "gatsby-remark-responsive-iframe": "1.4.16",
     "gatsby-source-filesystem": "1.5.11",
     "gatsby-transformer-remark": "1.7.26",
+    "gatsby-transformer-sharp": "1.6.16",
     "lodash": "4.17.4",
     "material-ui": "1.0.0-beta.26",
     "material-ui-icons": "1.0.0-beta.17",

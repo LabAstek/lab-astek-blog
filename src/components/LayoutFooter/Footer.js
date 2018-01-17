@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withStyles } from 'material-ui/styles'
+import withStyles from 'material-ui/styles/withStyles'
 import Typography from 'material-ui/Typography'
 import Grid from 'material-ui/Grid'
 
@@ -8,7 +8,7 @@ import Container from '../Container'
 import {
   getWebsiteTitle,
   getLabAstekGithubUrl,
-  getLabAstekTwitterUrl
+  getLabAstekTwitterUrl,
 } from '../../modules/config'
 
 import InternalFooterLink from './InternalFooterLink'
@@ -19,7 +19,10 @@ const styles = theme => ({
     backgroundColor: theme.colors.darker,
     color: theme.colors.white,
     paddingTop: 10,
-    paddingBottom: 50
+    paddingBottom: 50,
+    [theme.breakpoints.down('md')]: {
+      textAlign: 'center',
+    },
   },
   sectionTitle: {
     color: theme.colors.subtleOnDark,
@@ -27,13 +30,13 @@ const styles = theme => ({
     fontSize: '16px',
     fontWeight: '700',
     lineHeight: '3',
-    letterSpacing: '0.1em'
+    letterSpacing: '0.1em',
   },
   link: {
     color: theme.colors.white,
     '&:hover': {
-      color: theme.colors.brand
-    }
+      color: theme.colors.brand,
+    },
   },
   websiteName: {
     color: theme.colors.subtleOnDark,
@@ -41,8 +44,8 @@ const styles = theme => ({
     fontSize: '16px',
     fontWeight: '700',
     lineHeight: '3',
-    letterSpacing: '0.1em'
-  }
+    letterSpacing: '0.1em',
+  },
 })
 
 const Footer = ({ classes }) => (

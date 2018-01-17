@@ -51,6 +51,7 @@ const getComponent = node => {
   return templatePath
 }
 
+// Note: data commended is the data available but not required here
 module.exports = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
 
@@ -74,7 +75,16 @@ module.exports = ({ boundActionCreators, graphql }) => {
               description # Custom excerpt
               author # author name / pseudo
               draft # Set to true if you don’t want a specific post to show up when the site is generated
-              coverImage # imagetags to use as a cover
+              coverImage {
+                childImageSharp {
+                  resolutions(width: 400) {
+                    width
+                    height
+                    src
+                    srcSet
+                  }
+                }
+              }
               tags # list of tags
               category # category of the post
             }

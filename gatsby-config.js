@@ -11,7 +11,7 @@ module.exports = {
     // required by rss and sitemap
     siteUrl: metadata.websiteUrl,
     rssFeedTitle: metadata.rssTitle,
-    rssFeedDescription: metadata.description,
+    rssFeedDescription: metadata.description
   },
   plugins: [
     // read markdown files and parse them to be used as posts.
@@ -23,6 +23,21 @@ module.exports = {
         name: 'markdown-pages'
       }
     },
+    // required by gatsby-image
+    // https://www.npmjs.com/package/gatsby-image
+    // Creates ImageSharp nodes from image types that are supported by the Sharp image processing
+    // library and provides fields in their GraphQL types for processing your images in a variety of
+    // ways including resizing, cropping, and creating responsive images.
+    // https://www.npmjs.com/package/gatsby-transformer-sharp
+    `gatsby-transformer-sharp`,
+    // required by gatsby-image
+    // https://www.npmjs.com/package/gatsby-image
+    // Exposes several image processing functions built on the Sharp image processing library.
+    // This is a low-level helper plugin generally used by other Gatsby plugins. You generally s
+    // houldn't be using this directly but might find it helpful if doing very custom image
+    // processing.
+    // https://www.npmjs.com/package/gatsby-plugin-sharp
+    `gatsby-plugin-sharp`,
     // transform markdown files to html
     // https://github.com/gatsbyjs/gatsby/blob/master/docs/docs/adding-markdown-pages.md
     {

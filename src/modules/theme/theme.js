@@ -8,13 +8,13 @@ import red from 'material-ui/colors/red'
 const muiTheme = createMuiTheme({
   palette: {
     primary: {
-      ...red // spread color to override if needed. Ex: A400: #ccc
+      ...red, // spread color to override if needed. Ex: A400: #ccc
     },
     secondary: {
-      ...indigo
+      ...indigo,
     },
-    error: red
-  }
+    error: red,
+  },
 })
 
 const theme = {
@@ -36,7 +36,23 @@ const theme = {
     brand: red[400],
     twitter: '#1da1f2',
     github: '#4078c0',
-  }
+  },
+  padding: {
+    // Default paddings for a 'container'.
+    // Used by the `Container` component, and by others that needs
+    // to be compliant with those paddings but can't use `Container`
+    // Ex: index.js
+    container: {
+      [muiTheme.breakpoints.down('md')]: {
+        paddingLeft: 10,
+        paddingRight: 10,
+      },
+      [muiTheme.breakpoints.up('md')]: {
+        paddingLeft: 20,
+        paddingRight: 20,
+      },
+    },
+  },
 }
 
 export default theme

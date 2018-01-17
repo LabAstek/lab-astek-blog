@@ -5,6 +5,7 @@ title: "My first blog post test"
 template: article
 author: loiclefloch
 category: testCategory
+coverImage: ./cover.jpg
 tags:
   - tag1
   - tag2

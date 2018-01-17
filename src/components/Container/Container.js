@@ -4,19 +4,19 @@ import { withStyles } from 'material-ui/styles'
 
 const styles = theme => ({
   root: {
-    paddingLeft: 20,
-    paddingRight: 20,
     marginLeft: 'auto',
     marginRight: 'auto',
 
+    ...theme.padding.container,
+
     [theme.breakpoints.up('md')]: {
-      width: '90%'
+      width: '90%',
     },
 
     [theme.breakpoints.up('lg')]: {
-      maxWidth: 1260
-    }
-  }
+      maxWidth: 1260,
+    },
+  },
 })
 
 /**
