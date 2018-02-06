@@ -1,5 +1,7 @@
 import React from 'react'
 
+import isNil from 'lodash/isNil'
+
 import withStyles from 'material-ui/styles/withStyles'
 import Img from 'gatsby-image'
 
@@ -22,7 +24,7 @@ const styles = theme => ({
   },
 })
 
-const CoverImage = ({ frontmatter, classes }) => (
+const CoverImage = ({ frontmatter, classes }) => isNil(frontmatter.coverImage) ? null : (
   <div className={classes.root}>
     <Img
       className={classes.media}

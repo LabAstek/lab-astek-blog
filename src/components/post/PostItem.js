@@ -46,10 +46,12 @@ const Author = ({ post }) =>
 const PostItem = ({ post, classes }) => (
   <Card className={classes.card}>
     {post.hasCoverImage ? (
-      <Img
-        className={classes.media}
-        resolutions={post.frontmatter.coverImage.childImageSharp.sizes}
-      />
+      <InternalLink to={post.frontmatter.path}>
+        <Img
+          className={classes.media}
+          resolutions={post.frontmatter.coverImage.childImageSharp.sizes}
+        />
+      </InternalLink>
     ) : null}
 
     <CardHeader
@@ -74,12 +76,14 @@ const PostItem = ({ post, classes }) => (
         root: classes.cartContentRoot,
       }}
     >
-      <Typography
-        component="p"
-        className={classNames(classes.content, 'readable')}
-      >
-        {post.frontmatter.description}
-      </Typography>
+      <InternalLink to={post.frontmatter.path}>
+        <Typography
+          component="p"
+          className={classNames(classes.content, 'readable')}
+        >
+          {post.frontmatter.description}
+        </Typography>
+      </InternalLink>
     </CardContent>
   </Card>
 )
